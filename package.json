@@ -1,12 +1,12 @@
 {
-  "name": "syngen",
+  "name": "gmtk-jam-2020",
   "version": "0.1.0",
   "description": "",
-  "license": "UNLICENSED",
+  "license": "The Unlicense",
   "main": "electron/main.js",
   "private": true,
   "devDependencies": {
-    "electron": "^9.0.4",
+    "electron": "^9.1.0",
     "electron-packager": "^14.2.1",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
