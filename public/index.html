@@ -7,8 +7,41 @@
     <link rel="stylesheet" type="text/css" href="./styles.min.css" />
   </head>
   <body role="application">
-    <main class="sg-a-app">
-      <canvas class="sg-a-app--overlaySupport"></canvas>
+    <main class="a-app">
+      <canvas class="a-app--overlaySupport"></canvas>
+
+      <div class="a-app--screen a-app--game">
+        <section class="c-screen a-game" tabindex="-1"></scrion>
+      </div>
+
+      <div class="a-app--screen a-app--gameOver">
+        <section class="c-screen a-gameOver" tabindex="-1">
+          <h1>Game Over</h1>
+          <div class="a-gameOver--score">
+            <span class="a-gameOver--scoreLabel">Score:</span>
+            <span class="a-gameOver--scoreValue">0</span>
+          </div>
+          <div class="a-gameOver--highscore">
+            <span class="a-gameOver--highscoreLabel">High Score:</span>
+            <span class="a-gameOver--highscoreValue">0</span>
+            <div class="a-gameOver--highscoreNew">A New Record</div>
+          </div>
+          <button class="a-gameOver--restart">Play Again</button>
+        </scrion>
+      </div>
+
+      <div class="a-app--screen a-app--splash">
+        <section class="c-screen a-splash" tabindex="-1">
+          <h1 class="a-splash--logo">Audo</h1>
+          <div class="a-splash--highscore">
+            <span class="a-splash--highscoreLabel">High Score:</span>
+            <span class="a-splash--highscoreValue">0</span>
+          </div>
+          <button class="a-splash--start">Start Game</button>
+        </scrion>
+      </div>
+
+
     </main>
     <script src="./scripts.min.js"></script>
   </body>

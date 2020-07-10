@@ -44,12 +44,4 @@ app.controls = (() => {
   }
 })()
 
-engine.loop.on('frame', ({paused}) => {
-  app.controls.update()
-
-  if (paused) {
-    return
-  }
-
-  // TODO: Movement
-})
+engine.loop.on('frame', () => app.controls.update())
