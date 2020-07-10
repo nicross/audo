@@ -1,1 +1,41 @@
 .a-gameOver {}
+  .a-gameOver--highscore {
+    font-size: 0.75em;
+    margin-top: 0.5em;
+  }
+  .a-gameOver--restart {
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    line-height: 3;
+    margin-top: 1.5em;
+    padding: 0 1em;
+  }
+  .a-gameOver--restart:hover,
+  .a-gameOver--restart:focus {
+    border-style: dashed;
+  }
+  .a-gameOver--score {
+    font-size: 1.5em;
+    margin-top: 0.333em;
+  }
+  .a-gameOver--success {
+    font-family: ComfortaaBold, sans-serif;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .a-gameOver--title {
+    font-family: ComfortaaBold, sans-serif;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 1em;
+    overflow: hidden;
+    text-align: center;
+    text-transform: uppercase;
+    transition: letter-spacing 0.5s linear;
+    width: 100%;
+  }
+
+.a-app--screen-active .a-gameOver--title {
+  letter-spacing: 0.125em;
+}

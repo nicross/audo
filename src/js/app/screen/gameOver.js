@@ -6,8 +6,7 @@ app.screen.gameOver = (() => {
     app.utility.focus.set(root)
     engine.loop.on('frame', onFrame)
 
-    // TODO: Update score
-    // TODO: Update highscore
+    updateScores()
   }
 
   function onExit() {
@@ -29,6 +28,29 @@ app.screen.gameOver = (() => {
 
   function onRestartClick() {
     app.state.screen.dispatch('restart')
+  }
+
+  function updateScores() {
+    // XXX: Lazy
+
+    // TODO: Get real score from game
+    const highscore = app.storage.getHighscore(),
+      score = engine.utility.random.integer(highscore / 2, highscore * 2)
+
+    const isHighscore = score > highscore
+
+    if (isHighscore) {
+      app.storage.setHighscore(score)
+    }
+
+    root.querySelector('.a-gameOver--highscore').hidden = isHighscore
+    root.querySelector('.a-gameOver--success').hidden = !isHighscore
+
+    root.querySelector('.a-gameOver--scoreValue').innerHTML = app.utility.number.format(score)
+
+    root.querySelector('.a-gameOver--highscoreValue').innerHTML = app.utility.number.format(
+      app.storage.getHighscore()
+    )
   }
 
   return {
