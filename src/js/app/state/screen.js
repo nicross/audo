@@ -63,4 +63,5 @@ app.state.screen.on('enter', (e) => {
   element.classList.add('a-app--screen-active')
   element.removeAttribute('aria-hidden')
   element.removeAttribute('role')
+  element.removeAttribute('hidden')
 })
