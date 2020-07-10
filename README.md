@@ -1,4 +1,4 @@
-# gmtk-jam-2020
+# Audo
 A game developed with [syngen](https://github.com/nicross/syngen).
 
 ## Development
