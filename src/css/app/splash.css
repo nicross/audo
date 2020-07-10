@@ -4,5 +4,26 @@
     font-size: 4em;
     font-weight: 700;
     letter-spacing: 0.125em;
+    text-align: center;
     text-transform: uppercase;
+    transition: letter-spacing 0.5s linear;
   }
+  .a-splash--highscore {
+    font-size: 0.75em;
+    margin-top: 0.5em;
+  }
+  .a-splash--start {
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    line-height: 3;
+    margin-top: 0.5em;
+    padding: 0 1em;
+  }
+  .a-splash--start:hover,
+  .a-splash--start:focus {
+    border-style: dashed;
+  }
+
+.a-app--screen-inactive .a-splash--logo {
+  letter-spacing: 1em;
+}

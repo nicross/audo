@@ -12,3 +12,7 @@
 button, button *, button *::after, button *::before {
   cursor: pointer;
 }
+
+:focus {
+  outline: 0;
+}
