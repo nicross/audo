@@ -5,11 +5,7 @@ app.controls = (() => {
     uiDelta = {}
 
   let gameCache = {
-    rotate: 0,
-    translate: {
-      radius: 0,
-      theta: 0,
-    },
+    x: 0,
   }
 
   return {
@@ -20,16 +16,10 @@ app.controls = (() => {
     },
     updateGame: function () {
       gameCache = {
-        rotate: 0,
-        translate: {
-          radius: 0,
-          theta: 0,
-        },
+        x: 0,
         ...this.gamepad.game(),
         ...this.keyboard.game(),
       }
-
-      gameCache.translate.theta = engine.utility.normalizeAngleSigned(gameCache.translate.theta)
 
       return this
     },
@@ -61,7 +51,5 @@ engine.loop.on('frame', ({paused}) => {
     return
   }
 
-  engine.movement.update({
-    ...app.controls.game(),
-  })
+  // TODO: Movement
 })
