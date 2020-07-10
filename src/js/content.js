@@ -1,6 +1,9 @@
 'use strict'
 
 const content  = {
-  prop: {},
+  prop: {
+    opponent: {},
+    powerup: {},
+  },
   sfx: {},
 }
