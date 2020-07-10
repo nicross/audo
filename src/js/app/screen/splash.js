@@ -5,8 +5,7 @@ app.screen.splash = (() => {
   function onEnter() {
     app.utility.focus.set(root)
     engine.loop.on('frame', onFrame)
-
-    // TODO: Update highscore
+    updateHighscore()
   }
 
   function onExit() {
@@ -28,6 +27,14 @@ app.screen.splash = (() => {
 
   function onStartClick() {
     app.state.screen.dispatch('start')
+  }
+
+  function updateHighscore() {
+    document.querySelector('.a-splash--highscore').hidden = !app.storage.hasHighscore()
+
+    document.querySelector('.a-splash--highscoreValue').innerHTML = app.utility.number.format(
+      app.storage.getHighscore()
+    )
   }
 
   return {
