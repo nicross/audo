@@ -136,6 +136,8 @@ function getAppJs() {
 function getContentJs() {
   const srcs = [
     'src/js/content.js',
+    'src/js/content/prop/opponent/base.js',
+    'src/js/content/prop/powerup/base.js',
     'src/js/content/*.js',
     'src/js/content/**/*.js',
   ]
