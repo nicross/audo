@@ -7,6 +7,9 @@ app.screen.game = (() => {
 
     // TODO: Update score
     // TODO: Update highscore
+
+    // XXX: Short circuit to test gameOver screen
+    setTimeout(() => app.state.screen.dispatch('gameOver'), 2000)
   }
 
   function onExit() {
