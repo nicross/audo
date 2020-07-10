@@ -1,1 +1,8 @@
 .a-splash {}
+  .a-splash--logo {
+    font-family: ComfortaaBold, sans-serif;
+    font-size: 4em;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    text-transform: uppercase;
+  }
