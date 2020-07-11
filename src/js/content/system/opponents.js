@@ -12,28 +12,28 @@ content.system.opponents = (() => {
       relativeVelocity = content.system.player.relativeVelocity()
 
     for (let i = 0; i < content.const.minOpponents; i += 1) {
-      opponents.push(
-        engine.props.create(getOpponentType(), {
-          fresh: false,
-          radius: content.const.opponentRadius,
-          velocity: -relativeVelocity,
-          x: lapDistance / (i + 1),
-          y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
-        })
-      )
+      const opponent = engine.props.create(getOpponentType(), {
+        radius: content.const.opponentRadius,
+        x: lapDistance / (i + 1),
+        y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
+      })
+
+      opponent.velocity = -relativeVelocity
+      opponents.push(opponent)
     }
   }
 
   function spawnNew() {
-    opponents.push(
-      engine.props.create(getOpponentType(), {
-        fresh: true,
-        radius: content.const.opponentRadius,
-        velocity: 10, // TODO: Tune, e.g. based on lap count
-        x: -content.system.player.lapDistance(),
-        y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
-      })
-    )
+    const opponent = engine.props.create(getOpponentType(), {
+      radius: content.const.opponentRadius,
+      x: -content.system.player.lapDistance(),
+      y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
+    })
+
+    opponent.isFresh = true
+    opponent.velocity = content.system.player.relativeVelocity()
+
+    opponents.push(opponent)
   }
 
   function update() {
@@ -47,9 +47,9 @@ content.system.opponents = (() => {
       }
 
       if (opponent.distance > lapDistance) {
-        if (opponent.fresh) {
+        if (opponent.isFresh) {
           // Mark as unfresh so it enters the race
-          opponent.fresh = false
+          opponent.isFresh = false
         } else {
           // Reposition ahead
           opponent.x = lapDistance
@@ -57,10 +57,9 @@ content.system.opponents = (() => {
         }
       }
 
-      if (!opponent.fresh) {
-        // Update velocity
-        opponent.velocity = -relativeVelocity
-      }
+      opponent.velocity = opponent.isFresh
+        ? relativeVelocity
+        : -relativeVelocity
     }
   }
 
