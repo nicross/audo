@@ -5,6 +5,9 @@ app.screen.game = (() => {
     engine.loop.pause()
     content.sfx.gameOver()
 
+    // Cut the sounds
+    engine.props.reset()
+
     // TODO: Duration should be length of gameOver sfx (i.e. screen reader accessibility)
     setTimeout(() => app.state.screen.dispatch('gameOver'), 2000)
   }
