@@ -1,6 +1,14 @@
 app.screen.game = (() => {
   let root
 
+  function handleCollision() {
+    engine.loop.pause()
+    content.sfx.gameOver()
+
+    // TODO: Duration should be length of gameOver sfx (i.e. screen reader accessibility)
+    setTimeout(() => app.state.screen.dispatch('gameOver'), 2000)
+  }
+
   function onEnter() {
     app.utility.focus.set(root)
     engine.loop.on('frame', onFrame)
@@ -15,7 +23,7 @@ app.screen.game = (() => {
     engine.loop.resume()
 
     // XXX: Short circuit to test gameOver screen
-    setTimeout(() => app.state.screen.dispatch('gameOver'), 2000)
+    handleCollision()
   }
 
   function onExit() {
@@ -24,10 +32,11 @@ app.screen.game = (() => {
   }
 
   function onFrame() {
-    // TODO: Check collisions?
+    if (content.system.opponents.isCollision()) {
+      return handleCollision()
+    }
 
     const controls = app.controls.game()
-
     // TODO: Handle controls
   }
 
