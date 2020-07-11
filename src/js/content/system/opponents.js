@@ -13,6 +13,7 @@ content.system.opponents = (() => {
 
     for (let i = 0; i < content.const.minOpponents; i += 1) {
       const opponent = engine.props.create(getOpponentType(), {
+        index: i,
         radius: content.const.opponentRadius,
         x: lapDistance / (i + 1),
         y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
@@ -25,6 +26,7 @@ content.system.opponents = (() => {
 
   function spawnNew() {
     const opponent = engine.props.create(getOpponentType(), {
+      index: opponents.length,
       radius: content.const.opponentRadius,
       x: -content.system.player.lapDistance(),
       y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
