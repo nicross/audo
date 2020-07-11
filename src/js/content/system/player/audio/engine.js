@@ -10,10 +10,10 @@ content.system.player.audio.engine = (() => {
   input.connect(output)
   input.gain.value = engine.utility.fromDb(-9)
 
-  lfo.param.depth.value = 0.25
+  lfo.param.depth.value = 0
   lfo.connect(output.gain)
 
-  output.gain.value = 0.75
+  output.gain.value = 1
   output.connect(content.system.player.audio.bus())
 
   for (let i = 0; i < 4; i += 1) {
@@ -73,7 +73,13 @@ content.system.player.audio.engine = (() => {
       return this
     },
     update: function () {
+      const position = engine.position.get()
+      const lfoDepth = (position.y / content.const.roadRadius) / 2
+
+      output.gain.value = 1 - lfoDepth
+      lfo.param.depth.value = lfoDepth
       lfo.param.frequency.value = content.system.player.relativeVelocity()
+
       return this
     },
   }
