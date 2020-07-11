@@ -3,6 +3,15 @@ content.system.opponents = (() => {
 
   let isCollision = false
 
+  function checkCollision(opponent) {
+    if (opponent.distance) {
+      return false
+    }
+
+    // Lenient: only register if moving toward player
+    return engine.utility.sign(opponent.x) != engine.utility.sign(opponent.velocity)
+  }
+
   function getOpponentType() {
     return content.prop.opponent.base
   }
@@ -43,7 +52,7 @@ content.system.opponents = (() => {
       relativeVelocity = content.system.player.relativeVelocity()
 
     for (const opponent of opponents) {
-      if (!opponent.distance) {
+      if (checkCollision(opponent)) {
         isCollision = true
         return
       }
@@ -68,30 +77,30 @@ content.system.opponents = (() => {
   return {
     get: () => [...opponents],
     isCollision: () => isCollision,
-    onLap: function () {
+    onLap: function() {
       if (opponents.length < content.const.maxOpponents) {
         spawnNew()
       }
 
       return this
     },
-    reset: function () {
+    reset: function() {
       isCollision = false
       opponents.length = 0
       return this
     },
-    start: function () {
+    start: function() {
       spawnInitial()
       return this
     },
-    update: function () {
+    update: function() {
       update()
       return this
     },
   }
 })()
 
-engine.loop.on('frame', ({paused}) => {
+engine.loop.on('frame', ({ paused }) => {
   if (paused) {
     return
   }
