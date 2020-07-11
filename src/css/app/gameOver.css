@@ -33,6 +33,7 @@
     text-align: center;
     text-transform: uppercase;
     transition: letter-spacing 0.5s linear;
+    white-space: nowrap;
     width: 100%;
   }
 
