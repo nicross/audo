@@ -14,11 +14,11 @@ content.system.player = (() => {
   }
 
   function calculateLapTimer() {
-    return lapDistance * velocity
+    return content.const.lapTime * velocity
   }
 
   function calculateRelativeVelocity() {
-    return Math.log(velocity)
+    return Math.log(velocity) / Math.log(1.5)
   }
 
   return engine.utility.pubsub.decorate({
