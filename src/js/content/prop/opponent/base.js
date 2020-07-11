@@ -74,6 +74,7 @@ content.prop.opponent.base = engine.prop.base.invent({
     }
 
     this.collisionSynth.param.amod.frequency.value = engine.utility.lerp(4, 8, collisionChance)
+    this.collisionSynth.param.fmod.depth.value = collisionChance * this.collisionSynth.param.frequency.value
     this.collisionSynth.param.fmod.frequency.value = collisionChance * this.collisionSynth.param.frequency.value
     this.collisionSynth.param.gain.value = collisionChance * engine.utility.fromDb(-3)
   },
