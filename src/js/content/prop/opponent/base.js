@@ -33,13 +33,13 @@ content.prop.opponent.base = engine.prop.base.invent({
     this.collisionSynth = engine.audio.synth.createMod({
       amodDepth: 0.5,
       amodFrequency: 1,
-      amodType: 'square',
+      amodType: 'triangle',
       carrierFrequency: frequency,
       carrierGain: 0.5,
-      carrierType: 'triangle',
+      carrierType: 'sawtooth',
       fmodDepth: frequency / 2,
       fmodFrequency: frequency / 2,
-      fmodType: 'triangle',
+      fmodType: 'sawtooth',
     }).filtered({
       frequency: frequency * 2,
     }).connect(this.output.input)
@@ -79,11 +79,13 @@ content.prop.opponent.base = engine.prop.base.invent({
     this.collisionSynth.param.gain.value = collisionChance
   },
   buildToneSynth: function () {
-    const note = 36 + this.index
+    const frequency = engine.utility.midiToFrequency(36 + this.index)
 
     this.toneSynth = engine.audio.synth.createSimple({
-      frequency: engine.utility.midiToFrequency(note),
-      type: 'triangle',
+      frequency,
+      type: 'square',
+    }).filtered({
+      frequency: frequency * 8,
     }).connect(this.output.input)
 
     this.toneSynth.param.gain.value = engine.utility.fromDb(-3)
