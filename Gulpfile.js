@@ -140,6 +140,7 @@ function getContentJs() {
     'src/js/content/prop/powerup/base.js',
     'src/js/content/*.js',
     'src/js/content/system/player.js', // XXX: Event precedence
+    'src/js/content/system/player/audio.js', // XXX: Subsystems greedily included first by **/*
     'src/js/content/**/*.js',
   ]
 
