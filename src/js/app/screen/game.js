@@ -40,8 +40,9 @@ app.screen.game = (() => {
       return handleCollision()
     }
 
-    const controls = app.controls.game()
-    // TODO: Handle controls
+    content.system.player.movement.update(
+      app.controls.game()
+    )
   }
 
   return {
