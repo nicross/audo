@@ -1,6 +1,4 @@
 content.system.opponents = (() => {
-  const maxDistance = 100 // TODO: Get from lap system?
-
   const opponents = []
 
   let isCollision = false,
@@ -15,11 +13,13 @@ content.system.opponents = (() => {
   }
 
   function spawnInitial() {
+    const maxDistance = content.system.laps.distance()
+
     for (let i = 0; i < content.const.minOpponents; i += 1) {
       opponents.push(
         engine.props.create(getOpponentType(), {
           fresh: false,
-          radius: content.const.positionRadius,
+          radius: content.const.opponentRadius,
           velocity: relativeVelocity,
           x: maxDistance / i,
           y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
@@ -28,7 +28,21 @@ content.system.opponents = (() => {
     }
   }
 
+  function spawnNew() {
+    opponents.push(
+      engine.props.create(getOpponentType(), {
+        fresh: true,
+        radius: content.const.opponentRadius,
+        velocity: 10, // TODO: Tune, e.g. based on lap count
+        x: -content.system.laps.distance(),
+        y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
+      })
+    )
+  }
+
   function update() {
+    const maxDistance = content.system.laps.distance()
+
     for (const opponent of opponents) {
       if (!opponent.distance) {
         isCollision = true
@@ -54,7 +68,15 @@ content.system.opponents = (() => {
   }
 
   return {
+    get: () => [...opponents],
     isCollision: () => isCollision,
+    onLap: function () {
+      if (opponents.length < content.const.maxOpponents) {
+        spawnNew()
+      }
+
+      return this
+    },
     reset: function () {
       isCollision = false
       relativeVelocity = 0
@@ -71,3 +93,5 @@ content.system.opponents = (() => {
 
 engine.loop.on('frame', () => content.system.opponents.update())
 engine.state.on('reset', () => content.system.opponents.reset())
+
+content.system.laps.on('lap', () => content.system.opponents.onLap())
