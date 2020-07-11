@@ -21,7 +21,7 @@ content.system.opponents = (() => {
           fresh: false,
           radius: content.const.opponentRadius,
           velocity: relativeVelocity,
-          x: maxDistance / i,
+          x: maxDistance / (i + 1),
           y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
         })
       )
