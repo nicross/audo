@@ -1,4 +1,5 @@
 engine.const.distancePower = 1
+engine.const.propFadeDuration = 1/4
 
 content.const = {
   initialVelocity: 25,
