@@ -37,7 +37,7 @@ content.system.player.audio.road = (() => {
       })
 
       synth.filter.frequency.value = engine.utility.lerp(20, 400, yExp)
-      synth.param.gain.value = Math.abs(y) * engine.utility.fromDb(engine.utility.lerp(-3, -6, yExp))
+      synth.param.gain.value = Math.abs(y) * engine.utility.fromDb(engine.utility.lerp(-3, -9, yExp))
 
       synth.param.carrierGain.value = 1 - ((1 - yExp) / 2)
       synth.param.mod.depth.value = (1 - yExp) / 2
