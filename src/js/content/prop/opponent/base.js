@@ -55,11 +55,13 @@ content.prop.opponent.base = engine.prop.base.invent({
     let collisionChance = engine.utility.clamp(engine.utility.scale(yDistance, this.radius, this.radius * 4, 1, 0), 0, 1)
 
     if (
-         (collisionChance && this.velocity > 0 && this.x > 0)
-      || (collisionChance && this.velocity < 0 && this.x < 0)
+      collisionChance
+      && (
+           (this.velocity > 0 && this.x > 0)
+        || (this.velocity < 0 && this.x < 0)
+      )
     ) {
-      // Fade to zero when no longer a threat
-      collisionChance = Math.max(0, 1 - this.distance)
+      collisionChance = 1 - Math.min(1, this.distance / Math.abs(this.velocity))
     }
 
     if (!collisionChance) {
