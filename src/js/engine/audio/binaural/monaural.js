@@ -68,8 +68,8 @@ engine.audio.binaural.monaural.prototype = {
       inputGain = engine.utility.clamp(distancePower, engine.const.zeroGain, 1)
 
     engine.audio.ramp.linear(this.delay.delayTime, delayTime, delta)
-    this.filter.frequency.value = filterFrequency
-    this.gain.gain.value = inputGain
+    engine.audio.ramp.linear(this.filter.frequency, filterFrequency, delta)
+    engine.audio.ramp.linear(this.gain.gain, inputGain, delta)
 
     return this
   },
