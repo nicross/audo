@@ -3,6 +3,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   app.activate()
   engine.loop.start().pause()
-})
 
-// TODO: Call engine.audio.start() on first user gesture
+  engine.audio.mixer.master.param.limiter.attack.value = 0.009
+  engine.audio.mixer.master.param.limiter.gain.value = 1
+  engine.audio.mixer.master.param.limiter.knee.value = 12
+  engine.audio.mixer.master.param.limiter.ratio.value = 10
+  engine.audio.mixer.master.param.limiter.release.value = 0.25
+  engine.audio.mixer.master.param.limiter.threshold.value = -24
+})
