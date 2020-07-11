@@ -1,3 +1,5 @@
+engine.const.distancePower = 1
+
 content.const = {
   initialVelocity: 25,
   lapTime: 30,
