@@ -14,15 +14,15 @@ content.system.player.audio = (() => {
     },
     reset: function () {
       this.engine.reset()
-      this.movement.reset()
       this.road.reset()
+      this.tires.reset()
       this.wind.reset()
       return this
     },
     update: function (e) {
       this.engine.update(e)
-      this.movement.update(e)
       this.road.update(e)
+      this.tires.update(e)
       this.wind.update(e)
       return this
     },
