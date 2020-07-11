@@ -2,8 +2,8 @@ content.system.player.movement = {
   update: function ({x}) {
     const position = engine.position.get()
 
-    const allowLeft = position.y > -content.const.roadRadius,
-      allowRight = position.y < content.const.roadRadius
+    const allowLeft = position.y < content.const.roadRadius,
+      allowRight = position.y > -content.const.roadRadius
 
     const isLeft = x < 0,
       isRight = x > 0
@@ -13,10 +13,10 @@ content.system.player.movement = {
 
     if (allowLeft && isLeft) {
       translateRadius = -x
-      translateTheta = -Math.PI/2
+      translateTheta = Math.PI/2
     } else if (allowRight && isRight) {
       translateRadius = x
-      translateTheta = Math.PI/2
+      translateTheta = -Math.PI/2
     }
 
     if (!allowLeft || !allowRight) {
