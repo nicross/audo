@@ -31,7 +31,11 @@ app.screen.game = (() => {
     engine.loop.pause()
   }
 
-  function onFrame() {
+  function onFrame({paused}) {
+    if (paused) {
+      return
+    }
+
     if (content.system.opponents.isCollision()) {
       return handleCollision()
     }

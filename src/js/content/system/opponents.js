@@ -77,6 +77,10 @@ content.system.opponents = (() => {
     },
     reset: function () {
       isCollision = false
+      opponents.length = 0
+      return this
+    },
+    start: function () {
       spawnInitial()
       return this
     },
@@ -95,5 +99,6 @@ engine.loop.on('frame', ({paused}) => {
   content.system.opponents.update()
 })
 
+engine.state.on('import', () => content.system.opponents.start())
 engine.state.on('reset', () => content.system.opponents.reset())
 content.system.player.on('lap', () => content.system.opponents.onLap())
