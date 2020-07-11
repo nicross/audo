@@ -29,7 +29,8 @@ content.system.player.audio = (() => {
 
 engine.loop.on('pause', () => content.system.player.audio.onPause())
 engine.loop.on('resume', () => content.system.player.audio.onResume())
-engine.loop.on('reset', () => content.system.player.audio.reset())
+
+engine.state.on('reset', () => content.system.player.audio.reset())
 
 engine.loop.on('frame', (e) => {
   if (e.paused) {

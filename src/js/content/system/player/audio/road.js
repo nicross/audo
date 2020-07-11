@@ -13,14 +13,14 @@ content.system.player.audio.road = (() => {
 
   return {
     reset: function () {
-      this.binaural.update({
+      binaural.update({
         delta: engine.const.zeroTime,
         x: 0,
         y: 0,
       })
 
-      this.synth.filter.frequency.value = 20
-      this.synth.filter.gain.value = engine.const.zeroGain
+      synth.filter.frequency.value = 20
+      synth.filter.gain.value = engine.const.zeroGain
 
       return this
     },
