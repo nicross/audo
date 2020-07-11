@@ -10,8 +10,7 @@ content.system.player = (() => {
     velocity = content.const.initialVelocity
 
   function calculateLapDistance() {
-    const lapTime = Math.max(30, engine.utility.scale(laps, 0, 15, 60, 30))
-    return Math.abs(relativeVelocity) * lapTime
+    return Math.abs(relativeVelocity) * content.const.lapTime
   }
 
   function calculateLapTimer() {
