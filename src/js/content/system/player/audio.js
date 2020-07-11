@@ -1,9 +1,9 @@
 content.system.player.audio = (() => {
   const bus = engine.audio.mixer.createBus()
-
   bus.gain.value = engine.const.zeroGain
 
   return {
+    bus: () => bus,
     onPause: function () {
       engine.audio.ramp.linear(bus.gain, 0, 0.25)
       return this
@@ -14,14 +14,14 @@ content.system.player.audio = (() => {
     },
     reset: function () {
       this.engine.reset()
-      this.guardrails.reset()
       this.movement.reset()
+      this.road.reset()
       return this
     },
     update: function (e) {
       this.engine.update(e)
-      this.guardrails.update(e)
       this.movement.update(e)
+      this.road.update(e)
       return this
     },
   }
