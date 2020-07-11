@@ -20,7 +20,7 @@ content.prop.opponent.base = engine.prop.base.invent({
       buffer: engine.audio.buffer.noise.pink(),
     }).filtered().connect(this.output.input)
 
-    this.aeroSynth.param.gain.value = engine.utility.fromDb(-3)
+    this.aeroSynth.param.gain.value = engine.utility.fromDb(-6)
     this.aeroSynth.filter.frequency.value = 250
   },
   updateAeroSynth: function (velocityRatio) {
@@ -76,7 +76,7 @@ content.prop.opponent.base = engine.prop.base.invent({
     this.collisionSynth.param.amod.frequency.value = engine.utility.lerp(4, 8, collisionChance)
     this.collisionSynth.param.fmod.depth.value = collisionChance * this.collisionSynth.param.frequency.value
     this.collisionSynth.param.fmod.frequency.value = collisionChance * this.collisionSynth.param.frequency.value
-    this.collisionSynth.param.gain.value = collisionChance * engine.utility.fromDb(-3)
+    this.collisionSynth.param.gain.value = collisionChance
   },
   buildToneSynth: function () {
     const note = 36 + this.index
@@ -86,7 +86,7 @@ content.prop.opponent.base = engine.prop.base.invent({
       type: 'triangle',
     }).connect(this.output.input)
 
-    this.toneSynth.param.gain.value = engine.utility.fromDb(-6)
+    this.toneSynth.param.gain.value = engine.utility.fromDb(-3)
   },
   updateToneSynth: function (velocityRatio) {
     this.toneSynth.param.detune.value = engine.utility.lerp(0, 1200, velocityRatio)
