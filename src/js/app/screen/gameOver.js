@@ -34,7 +34,7 @@ app.screen.gameOver = (() => {
     // XXX: Lazy
 
     const highscore = app.storage.getHighscore(),
-      score = Math.round(content.system.velocity.get())
+      score = Math.round(content.system.player.velocity())
 
     const isHighscore = score > highscore
 

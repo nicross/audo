@@ -21,9 +21,6 @@ app.screen.game = (() => {
     })
 
     engine.loop.resume()
-
-    // XXX: Short circuit to test gameOver screen
-    handleCollision()
   }
 
   function onExit() {
