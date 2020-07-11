@@ -6,4 +6,5 @@ const content  = {
     powerup: {},
   },
   sfx: {},
+  system: {},
 }

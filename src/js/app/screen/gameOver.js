@@ -33,9 +33,8 @@ app.screen.gameOver = (() => {
   function updateScores() {
     // XXX: Lazy
 
-    // TODO: Get real score from game
     const highscore = app.storage.getHighscore(),
-      score = engine.utility.random.integer(highscore / 2, highscore * 2)
+      score = Math.round(content.system.velocity.get())
 
     const isHighscore = score > highscore
 
