@@ -5,8 +5,14 @@ app.screen.game = (() => {
     app.utility.focus.set(root)
     engine.loop.on('frame', onFrame)
 
+    engine.state.import({
+      position: {
+        x: 0,
+        y: 0,
+      },
+    })
+
     engine.loop.resume()
-    engine.state.reset()
 
     // XXX: Short circuit to test gameOver screen
     setTimeout(() => app.state.screen.dispatch('gameOver'), 2000)
