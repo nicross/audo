@@ -14,7 +14,7 @@ content.system.player = (() => {
     const position = engine.position.get(),
       ratio = Math.abs(position.y) / content.const.roadRadius
 
-    return 1 - (ratio ** 10)
+    return 1 - (ratio ** 20)
   }
 
   function calculateLapDistance() {
