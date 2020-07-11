@@ -5,8 +5,8 @@ app.screen.game = (() => {
     app.utility.focus.set(root)
     engine.loop.on('frame', onFrame)
 
-    // TODO: Update score
-    // TODO: Update highscore
+    engine.loop.resume()
+    engine.state.reset()
 
     // XXX: Short circuit to test gameOver screen
     setTimeout(() => app.state.screen.dispatch('gameOver'), 2000)
@@ -14,10 +14,11 @@ app.screen.game = (() => {
 
   function onExit() {
     engine.loop.off('frame', onFrame)
+    engine.loop.pause()
   }
 
   function onFrame() {
-    // TODO: Handle loss?
+    // TODO: Check collisions?
 
     const controls = app.controls.game()
 
