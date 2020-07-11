@@ -8,11 +8,11 @@ content.prop.opponent.base = engine.prop.base.invent({
     this.buildAeroSynth()
     this.buildToneSynth()
   },
-  onUpdate: function () {
-    const velocityRatio = Math.min(1, Math.abs(this.velocity) / 10)
+  onUpdate: function ({delta}) {
+    const velocityRatio = Math.min(1, Math.abs(this.velocity) / 30)
 
     this.updateAeroSynth(velocityRatio)
-    this.updateCollisionSynth()
+    this.updateCollisionSynth(delta)
     this.updateToneSynth(velocityRatio)
   },
   buildAeroSynth: function () {
@@ -48,20 +48,21 @@ content.prop.opponent.base = engine.prop.base.invent({
     this.collisionSynth.stop().disconnect()
     delete this.collisionSynth
   },
-  updateCollisionSynth: function () {
+  updateCollisionSynth: function (delta) {
     const position = engine.position.get()
 
     const yDistance = Math.abs(this.y - position.y)
     let collisionChance = engine.utility.clamp(engine.utility.scale(yDistance, this.radius, this.radius * 4, 1, 0), 0, 1)
 
     if (
-      collisionChance
+         collisionChance
+      && this.collisionSynth
       && (
            (this.velocity > 0 && this.x > 0)
         || (this.velocity < 0 && this.x < 0)
       )
     ) {
-      collisionChance = 1 - Math.min(1, this.distance / Math.abs(this.velocity))
+      collisionChance = (1 - Math.min(1, this.distance / Math.abs(this.velocity))) * collisionChance
     }
 
     if (!collisionChance) {
@@ -85,10 +86,10 @@ content.prop.opponent.base = engine.prop.base.invent({
         : reactionCompensation
     )
 
-    this.collisionSynth.param.amod.frequency.value = engine.utility.lerp(4, 8, collisionChance)
-    this.collisionSynth.param.fmod.depth.value = collisionChance * this.collisionSynth.param.frequency.value
-    this.collisionSynth.param.fmod.frequency.value = collisionChance * this.collisionSynth.param.frequency.value
-    this.collisionSynth.param.gain.value = collisionChance * compensation
+    engine.audio.ramp.linear(this.collisionSynth.param.amod.frequency, engine.utility.lerp(2, 8, collisionChance), delta)
+    engine.audio.ramp.linear(this.collisionSynth.param.fmod.depth, collisionChance * this.collisionSynth.param.frequency.value, delta)
+    engine.audio.ramp.linear(this.collisionSynth.param.fmod.frequency, collisionChance * this.collisionSynth.param.frequency.value, delta)
+    engine.audio.ramp.linear(this.collisionSynth.param.gain, collisionChance * compensation, delta)
   },
   buildToneSynth: function () {
     const frequency = engine.utility.midiToFrequency(36 + this.index)
