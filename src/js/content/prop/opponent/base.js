@@ -98,7 +98,7 @@ content.prop.opponent.base = engine.prop.base.invent({
       frequency,
       type: 'square',
     }).filtered({
-      frequency: frequency * 8,
+      frequency: frequency * 16,
     }).connect(this.output.input)
 
     this.toneSynth.param.gain.value = engine.utility.fromDb(-3)
