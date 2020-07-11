@@ -29,7 +29,7 @@ content.system.opponents = (() => {
       index: opponents.length,
       radius: content.const.opponentRadius,
       x: -content.system.player.lapDistance() / 2,
-      y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
+      y: 0,
     })
 
     opponent.isFresh = true
