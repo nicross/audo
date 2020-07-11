@@ -5,8 +5,8 @@ app.controls.keyboard = (() => {
     ArrowLeft: false,
     ArrowRight: false,
     Enter: false,
+    KeyA: false,
     KeyD: false,
-    KeyW: false,
     Numpad4: false,
     Numpad6: false,
     NumpadEnter: false,
@@ -31,8 +31,8 @@ app.controls.keyboard = (() => {
 
   return {
     game: () => {
-      const left = controls.LeftArrow || controls.KeyA || controls.Numpad4,
-        right = controls.RightArrow || controls.KeyD || controls.Numpad6
+      const left = controls.ArrowLeft || controls.KeyA || controls.Numpad4,
+        right = controls.ArrowRight || controls.KeyD || controls.Numpad6
 
       let x = 0
 
