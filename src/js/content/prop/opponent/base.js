@@ -73,10 +73,20 @@ content.prop.opponent.base = engine.prop.base.invent({
       this.buildCollisionSynth()
     }
 
+    const reactionTime = 10
+    const reactionDistance = reactionTime * Math.abs(this.velocity)
+    const reactionCompensation = -engine.utility.toDb(engine.utility.distanceToPower(reactionDistance)) / 4
+
+    const compensation = engine.utility.fromDb(
+      this.distance < reactionDistance
+        ? Math.max(0, reactionCompensation * this.distance / reactionDistance)
+        : reactionCompensation
+    )
+
     this.collisionSynth.param.amod.frequency.value = engine.utility.lerp(4, 8, collisionChance)
     this.collisionSynth.param.fmod.depth.value = collisionChance * this.collisionSynth.param.frequency.value
     this.collisionSynth.param.fmod.frequency.value = collisionChance * this.collisionSynth.param.frequency.value
-    this.collisionSynth.param.gain.value = collisionChance
+    this.collisionSynth.param.gain.value = collisionChance * compensation
   },
   buildToneSynth: function () {
     const frequency = engine.utility.midiToFrequency(36 + this.index)
