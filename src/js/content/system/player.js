@@ -9,6 +9,14 @@ content.system.player = (() => {
     time = 0,
     velocity = content.const.initialVelocity
 
+  function calculateAccelerationCoefficient() {
+    // Accelerates most when in center of road
+    const position = engine.position.get(),
+      ratio = Math.abs(position.y) / content.const.roadRadius
+
+    return 1 - (ratio ** 10)
+  }
+
   function calculateLapDistance() {
     return Math.abs(relativeVelocity) * content.const.lapTime
   }
@@ -44,8 +52,10 @@ content.system.player = (() => {
     },
     time: () => time,
     update: function (delta = 0) {
+      const acceleration = calculateAccelerationCoefficient()
+
       time += delta
-      velocity += delta * Math.log(time)
+      velocity += delta * Math.log(time) * acceleration
 
       const velocityDelta = velocity * delta
 
