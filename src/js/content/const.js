@@ -7,7 +7,7 @@ content.const = {
   maxOpponents: 12,
   minOpponents: 3,
   opponentRadius: 1,
-  roadRadius: 5,
+  roadRadius: 10,
 }
 
 engine.const.movementMaxVelocity = content.const.roadRadius * 2
