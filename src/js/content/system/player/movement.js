@@ -27,6 +27,9 @@ content.system.player.movement = {
       })
     }
 
+    const relativeVelocity = content.system.player.relativeVelocity()
+    engine.const.movementAcceleration = relativeVelocity
+
     engine.movement.update({
       translate: {
         radius: translateRadius,
