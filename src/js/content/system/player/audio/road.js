@@ -20,7 +20,7 @@ content.system.player.audio.road = (() => {
       })
 
       synth.filter.frequency.value = 20
-      synth.filter.gain.value = engine.const.zeroGain
+      synth.param.gain.value = engine.const.zeroGain
 
       return this
     },
