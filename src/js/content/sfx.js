@@ -151,7 +151,18 @@ content.sfx.shieldDown = () => {
   synth.connect(mixer)
   mixer.connect(content.sfx.bus)
 
+  const noise = engine.audio.synth.createBuffer({
+    buffer: engine.audio.buffer.noise.pink(),
+  }).filtered({
+    frequency: 80,
+  }).connect(content.sfx.bus)
+
+  noise.param.gain.setValueAtTime(engine.const.zeroGain, now)
+  noise.param.gain.exponentialRampToValueAtTime(4, now + 1/16) // XXX: Above 0 dB
+  noise.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
+
   lfo.stop(now + 3)
+  noise.stop(now + 3)
   synth.stop(now + 3)
 }
 
