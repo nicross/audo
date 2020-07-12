@@ -3,9 +3,10 @@ content.system.player.audio.engine = (() => {
     duration = 30000, // ms
     frequency = engine.utility.midiToFrequency(48),
     input = context.createGain(),
-    lfo = engine.audio.synth.createLfo(),
     output = context.createGain(),
     synths = []
+
+  const lfo = engine.audio.synth.createLfo().shaped(engine.audio.shape.distort())
 
   input.connect(output)
   input.gain.value = engine.utility.fromDb(-9)
@@ -27,7 +28,7 @@ content.system.player.audio.engine = (() => {
   function automate(synth) {
     const now = engine.audio.time()
 
-    const color = 2
+    const color = 3
 
     const endTime = now + (duration / 1000),
       halfTime = now + (duration / 1000 / 2)
@@ -74,7 +75,7 @@ content.system.player.audio.engine = (() => {
     },
     update: function () {
       const position = engine.position.get()
-      const lfoDepth = (position.y / content.const.roadRadius) / 2
+      const lfoDepth = (((position.y / content.const.roadRadius) ** 0.5) || 0) / 2
 
       output.gain.value = 1 - lfoDepth
       lfo.param.depth.value = lfoDepth
