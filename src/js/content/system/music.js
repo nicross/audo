@@ -54,9 +54,9 @@ content.system.music = (() => {
 
   return {
     blur: function () {
-      engine.audio.ramp.linear(filter.frequency, 60, 2)
-      engine.audio.ramp.linear(mixer.gain, 1, 2)
-      engine.audio.ramp.linear(panner.pan, 0, 2)
+      engine.audio.ramp.linear(filter.frequency, 60, 1)
+      engine.audio.ramp.linear(mixer.gain, 1, 1)
+      engine.audio.ramp.linear(panner.pan, 0, 1)
       return this
     },
     start: function () {
