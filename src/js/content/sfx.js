@@ -82,24 +82,24 @@ content.sfx.shieldDown = () => {
     harmonic: [
       {
         coefficient: 1,
-        gain: 1/3,
+        gain: 1,
         type: 'sawtooth',
       },
       {
         coefficient: engine.utility.addInterval(1, 3/12),
         detune: engine.utility.random.float(-25, 25),
-        gain: 1/3,
+        gain: 1,
         type: 'square',
       },
       {
         coefficient: engine.utility.addInterval(1, 7/12),
         detune: engine.utility.random.float(-25, 25),
-        gain: 1/3,
+        gain: 1,
         type: 'triangle',
       },
     ],
   }).filtered({
-    frequency: frequency * 3,
+    frequency: frequency * 8,
   })
 
   synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
@@ -137,24 +137,24 @@ content.sfx.shieldUp = () => {
     harmonic: [
       {
         coefficient: 1,
-        gain: 1/3,
+        gain: 1,
         type: 'sawtooth',
       },
       {
         coefficient: engine.utility.addInterval(1, 4/12),
         detune: engine.utility.random.float(-25, 25),
-        gain: 1/3,
+        gain: 1,
         type: 'square',
       },
       {
         coefficient: engine.utility.addInterval(1, 7/12),
         detune: engine.utility.random.float(-25, 25),
-        gain: 1/3,
+        gain: 1,
         type: 'triangle',
       },
     ],
   }).filtered({
-    frequency: frequency * 3,
+    frequency: frequency * 8,
   })
 
   synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
