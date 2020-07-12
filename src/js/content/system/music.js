@@ -17,8 +17,7 @@ content.system.music = (() => {
   filter.connect(bus)
 
   function calculateDuration() {
-    const velocity = content.system.player.relativeVelocity()
-    return engine.utility.clamp(engine.utility.scale(velocity, 1, 35, 1, 1/8), 1/8, 1)
+    return engine.utility.lerp(1, 1/8, content.system.player.velocityRatio())
   }
 
   function pulse() {

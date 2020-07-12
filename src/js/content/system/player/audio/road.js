@@ -25,23 +25,23 @@ content.system.player.audio.road = (() => {
       return this
     },
     update: function ({delta}) {
-      const position = engine.position.get(),
-        relativeVelocity = content.system.player.relativeVelocity(),
-        y = engine.utility.scale(position.y, -content.const.roadRadius, content.const.roadRadius, -1, 1),
-        yExp = Math.abs(y) ** 10
+      const acceleration = content.system.player.acceleration(),
+        accelerationExp = (1 - acceleration) ** 2,
+        position = engine.position.get(),
+        velocityRatio = content.system.player.velocityRatio()
 
       binaural.update({
         delta,
         x: 0,
-        y: engine.utility.sign(y) * yExp * engine.const.binauralHeadWidth,
+        y: engine.utility.sign(position.y) * accelerationExp * engine.const.binauralHeadWidth,
       })
 
-      synth.filter.frequency.value = engine.utility.lerp(20, 400, yExp)
-      synth.param.gain.value = Math.abs(y) * engine.utility.fromDb(engine.utility.lerp(-3, -9, yExp))
+      synth.filter.frequency.value = engine.utility.lerp(20, 400, accelerationExp)
+      synth.param.gain.value = (1 - acceleration) * engine.utility.fromDb(engine.utility.lerp(-3, -9, accelerationExp))
 
-      synth.param.carrierGain.value = 1 - ((1 - yExp) / 2)
-      synth.param.mod.depth.value = (1 - yExp) / 2
-      synth.param.mod.frequency.value = relativeVelocity
+      synth.param.carrierGain.value = 1 - ((1 - accelerationExp) / 2)
+      synth.param.mod.depth.value = (1 - accelerationExp) / 2
+      synth.param.mod.frequency.value = engine.utility.lerp(4, 20, velocityRatio)
 
       return this
     },

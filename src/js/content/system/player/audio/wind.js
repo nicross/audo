@@ -13,11 +13,10 @@ content.system.player.audio.wind = (() => {
       return this
     },
     update: function () {
-      const relativeVelocity = content.system.player.relativeVelocity()
-      const scaled = Math.min(1, relativeVelocity / 30)
+      const strength = content.system.player.velocityRatio()
 
-      synth.filter.frequency.value = engine.utility.lerpExp(engine.const.minFrequency, engine.const.maxFrequency, scaled, 2)
-      synth.param.gain.value = engine.utility.fromDb(engine.utility.lerp(-36, -18, scaled))
+      synth.filter.frequency.value = engine.utility.lerpExp(engine.const.minFrequency, engine.const.maxFrequency, strength, 2)
+      synth.param.gain.value = engine.utility.fromDb(engine.utility.lerp(-36, -18, strength))
 
       return this
     },

@@ -5,6 +5,7 @@ content.const = {
   initialVelocity: 25,
   lapTime: 30,
   maxOpponents: 12,
+  maxVelocity: 10 ** 6,
   minOpponents: 3,
   opponentRadius: 0.75,
   powerupRadius: 1,

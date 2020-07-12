@@ -74,12 +74,12 @@ content.system.player.audio.engine = (() => {
       return this
     },
     update: function () {
-      const position = engine.position.get()
-      const lfoDepth = (((position.y / content.const.roadRadius) ** 0.5) || 0) / 2
+      const acceleration = content.system.player.acceleration(),
+        lfoDepth = ((1 - acceleration) ** 0.5) / 2
 
       output.gain.value = 1 - lfoDepth
       lfo.param.depth.value = lfoDepth
-      lfo.param.frequency.value = content.system.player.relativeVelocity()
+      lfo.param.frequency.value = engine.utility.lerp(4, 20, content.system.player.velocityRatio())
 
       return this
     },
