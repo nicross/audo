@@ -5,6 +5,7 @@ content.sfx.bus.gain.value = engine.utility.fromDb(0)
 
 content.sfx.boost = () => {
   // TODO
+  console.log('boost')
 }
 
 content.sfx.gameOver = () => {
@@ -65,7 +66,7 @@ content.sfx.lap = () => {
   synth.param.detune.linearRampToValueAtTime(1200, now + 1/4)
 
   synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
-  synth.param.gain.exponentialRampToValueAtTime(1/32, now + 1/32)
+  synth.param.gain.exponentialRampToValueAtTime(1/16, now + 1/32)
   synth.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
 
   synth.stop(now + 3)
@@ -73,8 +74,10 @@ content.sfx.lap = () => {
 
 content.sfx.shieldDown = () => {
   // TODO
+  console.log('shield down')
 }
 
 content.sfx.shieldUp = () => {
   // TODO
+  console.log('shield up')
 }
