@@ -87,11 +87,13 @@ content.sfx.shieldDown = () => {
       },
       {
         coefficient: engine.utility.addInterval(1, 3/12),
+        detune: engine.utility.random.float(-25, 25),
         gain: 1/3,
         type: 'square',
       },
       {
         coefficient: engine.utility.addInterval(1, 7/12),
+        detune: engine.utility.random.float(-25, 25),
         gain: 1/3,
         type: 'triangle',
       },
@@ -106,7 +108,8 @@ content.sfx.shieldDown = () => {
 
   synth.param.detune.setValueAtTime(-600, now)
   synth.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/16)
-  synth.param.detune.linearRampToValueAtTime(-600, now + 1)
+  synth.param.detune.setValueAtTime(engine.const.zero, now + 1/8)
+  synth.param.detune.linearRampToValueAtTime(-600, now + 1/4)
 
   const lfo = engine.audio.synth.createLfo({
     depth: 1/4,
@@ -139,11 +142,13 @@ content.sfx.shieldUp = () => {
       },
       {
         coefficient: engine.utility.addInterval(1, 4/12),
+        detune: engine.utility.random.float(-25, 25),
         gain: 1/3,
         type: 'square',
       },
       {
         coefficient: engine.utility.addInterval(1, 7/12),
+        detune: engine.utility.random.float(-25, 25),
         gain: 1/3,
         type: 'triangle',
       },
@@ -158,7 +163,8 @@ content.sfx.shieldUp = () => {
 
   synth.param.detune.setValueAtTime(1200, now)
   synth.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/16)
-  synth.param.detune.linearRampToValueAtTime(1200, now + 1)
+  synth.param.detune.setValueAtTime(engine.const.zero, now + 1/8)
+  synth.param.detune.linearRampToValueAtTime(1200, now + 1/4)
 
   const lfo = engine.audio.synth.createLfo({
     depth: 1/4,
