@@ -42,6 +42,10 @@ app.controls.keyboard = (() => {
         x = 1
       }
 
+      if (!x) {
+        return {}
+      }
+
       return {
         x,
       }

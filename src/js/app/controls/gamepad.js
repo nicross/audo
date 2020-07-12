@@ -43,6 +43,10 @@ app.controls.gamepad = {
       x = 1
     }
 
+    if (!x) {
+      return {}
+    }
+
     return {
       x,
     }
