@@ -17,7 +17,6 @@ content.prop.powerup.base = engine.prop.base.invent({
   },
   applyShield: function () {
     content.system.player.shield.grant()
-    content.sfx.shieldUp()
     return this
   },
 })

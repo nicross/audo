@@ -48,12 +48,20 @@ content.system.opponents = (() => {
   }
 
   function update() {
-    const lapDistance = content.system.player.lapDistance() / 2,
+    const hasShield = content.system.player.shield.has(),
+      lapDistance = content.system.player.lapDistance() / 2,
       relativeVelocity = content.system.player.relativeVelocity()
+
+    let shieldBroken = false
 
     for (const opponent of opponents) {
       if (checkCollision(opponent)) {
-        isCollision = true
+        if (hasShield) {
+          opponent.isShielded = true
+          shieldBroken = true
+        } else {
+          isCollision = true
+        }
         return
       }
 
@@ -66,11 +74,17 @@ content.system.opponents = (() => {
           opponent.x = lapDistance
           opponent.y = engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius)
         }
+
+        opponent.isShielded = false
       }
 
       opponent.velocity = opponent.isFresh
         ? relativeVelocity
         : -relativeVelocity
+    }
+
+    if (shieldBroken) {
+      content.system.player.shield.remove()
     }
   }
 
