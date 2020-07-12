@@ -12,7 +12,7 @@ engine.loop = (() => {
     lastFrame
 
   function cancelFrame() {
-    cancelAnimationFrame(activeRequest)
+    cancelIdleCallback(activeRequest)
     clearTimeout(idleRequest)
   }
 
@@ -57,7 +57,7 @@ engine.loop = (() => {
     if (document.hidden) {
       idleRequest = setTimeout(doIdleFrame, getNextIdleDelay())
     } else {
-      activeRequest = requestAnimationFrame(doActiveFrame)
+      activeRequest = requestIdleCallback(doActiveFrame)
     }
   }
 
