@@ -109,19 +109,19 @@ content.sfx.shieldDown = () => {
     harmonic: [
       {
         coefficient: 0.5,
-        gain: 1,
+        gain: 1/3,
         type: 'sawtooth',
       },
       {
         coefficient: engine.utility.addInterval(1, 3/12),
         detune: engine.utility.random.float(-25, 25),
-        gain: 1,
+        gain: 1/3,
         type: 'square',
       },
       {
         coefficient: engine.utility.addInterval(1, 7/12),
         detune: engine.utility.random.float(-25, 25),
-        gain: 1,
+        gain: 1/3,
         type: 'triangle',
       },
     ],
@@ -165,19 +165,19 @@ content.sfx.shieldUp = () => {
     harmonic: [
       {
         coefficient: 0.5,
-        gain: 1,
+        gain: 1/3,
         type: 'sawtooth',
       },
       {
         coefficient: engine.utility.addInterval(1, 4/12),
         detune: engine.utility.random.float(-25, 25),
-        gain: 1,
+        gain: 1/3,
         type: 'square',
       },
       {
         coefficient: engine.utility.addInterval(1, 7/12),
         detune: engine.utility.random.float(-25, 25),
-        gain: 1,
+        gain: 1/3,
         type: 'triangle',
       },
     ],
