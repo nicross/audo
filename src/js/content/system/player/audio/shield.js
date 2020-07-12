@@ -24,7 +24,7 @@ content.system.player.audio.shield = (() => {
     synth.lfoFilter.connect(synth.filter.frequency)
     synth.lfoPanner.connect(synth.panner.pan)
 
-    engine.audio.ramp.linear(synth.param.gain, engine.utility.fromDb(-21), 1)
+    engine.audio.ramp.linear(synth.param.gain, engine.utility.fromDb(-19.5), 1)
   }
 
   function destroySynth() {
