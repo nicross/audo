@@ -55,14 +55,13 @@ content.system.opponents = (() => {
     let shieldBroken = false
 
     for (const opponent of opponents) {
-      if (checkCollision(opponent)) {
+      if (!opponent.isShielded && checkCollision(opponent)) {
         if (hasShield) {
           opponent.isShielded = true
           shieldBroken = true
         } else {
           isCollision = true
         }
-        return
       }
 
       if (opponent.distance > lapDistance) {
