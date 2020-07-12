@@ -73,11 +73,105 @@ content.sfx.lap = () => {
 }
 
 content.sfx.shieldDown = () => {
-  // TODO
-  console.log('shield down')
+  const now = engine.audio.time()
+
+  const frequency = engine.utility.midiToFrequency(60)
+
+  const synth = engine.audio.synth.createAdditive({
+    frequency,
+    harmonic: [
+      {
+        coefficient: 1,
+        gain: 1/3,
+        type: 'sawtooth',
+      },
+      {
+        coefficient: engine.utility.addInterval(1, 3/12),
+        gain: 1/3,
+        type: 'square',
+      },
+      {
+        coefficient: engine.utility.addInterval(1, 7/12),
+        gain: 1/3,
+        type: 'triangle',
+      },
+    ],
+  }).filtered({
+    frequency: frequency * 3,
+  })
+
+  synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
+  synth.param.gain.exponentialRampToValueAtTime(1, now + 1/16)
+  synth.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
+
+  synth.param.detune.setValueAtTime(-600, now)
+  synth.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/16)
+  synth.param.detune.linearRampToValueAtTime(-600, now + 1)
+
+  const lfo = engine.audio.synth.createLfo({
+    depth: 1/4,
+    frequency: 8,
+  })
+
+  const mixer = engine.audio.context().createGain()
+  mixer.gain.value = 3/4
+
+  lfo.connect(mixer.gain)
+  synth.connect(mixer)
+  mixer.connect(content.sfx.bus)
+
+  lfo.stop(now + 3)
+  synth.stop(now + 3)
 }
 
 content.sfx.shieldUp = () => {
-  // TODO
-  console.log('shield up')
+  const now = engine.audio.time()
+
+  const frequency = engine.utility.midiToFrequency(60)
+
+  const synth = engine.audio.synth.createAdditive({
+    frequency,
+    harmonic: [
+      {
+        coefficient: 1,
+        gain: 1/3,
+        type: 'sawtooth',
+      },
+      {
+        coefficient: engine.utility.addInterval(1, 4/12),
+        gain: 1/3,
+        type: 'square',
+      },
+      {
+        coefficient: engine.utility.addInterval(1, 7/12),
+        gain: 1/3,
+        type: 'triangle',
+      },
+    ],
+  }).filtered({
+    frequency: frequency * 3,
+  })
+
+  synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
+  synth.param.gain.exponentialRampToValueAtTime(1, now + 1/16)
+  synth.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
+
+  synth.param.detune.setValueAtTime(1200, now)
+  synth.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/16)
+  synth.param.detune.linearRampToValueAtTime(1200, now + 1)
+
+  const lfo = engine.audio.synth.createLfo({
+    depth: 1/4,
+    frequency: 8,
+  })
+
+  const mixer = engine.audio.context().createGain()
+  mixer.gain.value = 3/4
+
+  lfo.connect(mixer.gain)
+  synth.connect(mixer)
+  mixer.connect(content.sfx.bus)
+
+  lfo.stop(now + 3)
+  synth.stop(now + 3)
 }
