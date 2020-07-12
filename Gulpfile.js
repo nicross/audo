@@ -140,6 +140,7 @@ function getContentJs() {
     'src/js/content/prop/powerup/base.js',
     'src/js/content/*.js',
     'src/js/content/system/player.js', // XXX: Event precedence
+    'src/js/content/system/player/shield.js', // XXX: Event precedence
     'src/js/content/system/player/audio.js',
     'src/js/content/system/player/audio/*.js',
     'src/js/content/**/*.js',
