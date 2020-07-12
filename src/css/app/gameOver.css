@@ -30,15 +30,21 @@
     font-family: ComfortaaBold, sans-serif;
     font-size: 3em;
     font-weight: 700;
-    letter-spacing: 1em;
+    letter-spacing: 0.125em;
     overflow: hidden;
     text-align: center;
     text-transform: uppercase;
-    transition: letter-spacing 0.5s linear;
+
     white-space: nowrap;
     width: 400%;
   }
 
-.a-app--screen-active .a-gameOver--title {
-  letter-spacing: 0.125em;
+@media (prefers-reduced-motion: no-preference) {
+  .a-gameOver--title {
+    letter-spacing: 1em;
+    transition: letter-spacing 0.5s linear;
+  }
+  .a-app--screen-active .a-gameOver--title {
+    letter-spacing: 0.125em;
+  }
 }

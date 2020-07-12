@@ -6,7 +6,6 @@
     letter-spacing: 0.125em;
     text-align: center;
     text-transform: uppercase;
-    transition: letter-spacing 0.5s linear;
   }
   .a-splash--highscore {
     font-size: 0.75em;
@@ -24,6 +23,11 @@
     border-style: dashed;
   }
 
-.a-app--screen-inactive .a-splash--logo {
-  letter-spacing: 1em;
+@media (prefers-reduced-motion: no-preference) {
+  .a-splash--logo {
+    transition: letter-spacing 0.5s linear;
+  }
+  .a-app--screen-inactive .a-splash--logo {
+    letter-spacing: 1em;
+  }
 }

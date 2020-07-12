@@ -1,17 +1,28 @@
 .a-game {}
   .a-game--notice {
-    animation: a-game--notice 2s ease-in-out 0s normal infinite;
     text-transform: uppercase;
   }
 
-  @keyframes a-game--notice {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
+@media (prefers-reduced-motion: no-preference) {
+  .a-game--notice {
+    animation: a-game--notice 2s ease-in-out 0s normal infinite;
+    transform: translate3d(0%, 2.625em, 0);
+    transition: transform 0.5s ease;
   }
+
+  .a-app--screen-active .a-game--notice {
+    transform: translate3d(0%, 0%, 0);
+  }
+}
+
+@keyframes a-game--notice {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
