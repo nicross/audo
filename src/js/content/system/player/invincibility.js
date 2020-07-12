@@ -12,7 +12,14 @@ content.system.player.invincibility = (() => {
       return this
     },
     update: function ({delta}) {
-      timer -= delta
+      if (timer > 0) {
+        timer -= delta
+
+        if (timer < 0) {
+          timer = 0
+        }
+      }
+
       return this
     },
   }
