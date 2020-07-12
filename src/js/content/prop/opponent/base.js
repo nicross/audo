@@ -64,7 +64,7 @@ content.prop.opponent.base = engine.prop.base.invent({
     const position = engine.position.get()
 
     const yDistance = Math.abs(this.y - position.y)
-    let collisionChance = engine.utility.clamp(engine.utility.scale(yDistance, this.radius, this.radius * 4, 1, 0), 0, 1)
+    let collisionChance = engine.utility.clamp(engine.utility.scale(yDistance, this.radius, this.radius * 8, 1, 0), 0, 1)
 
     if (
          collisionChance
