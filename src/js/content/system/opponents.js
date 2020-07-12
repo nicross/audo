@@ -50,11 +50,14 @@ content.system.opponents = (() => {
   function update() {
     const hasShield = content.system.player.shield.has(),
       lapDistance = content.system.player.lapDistance() / 2,
+      position = engine.position.get(),
       relativeVelocity = content.system.player.relativeVelocity()
 
     let shieldBroken = false
 
-    for (const opponent of opponents) {
+    for (let i = 0; i < opponents.length; i += 1) {
+      const opponent = opponents[i]
+
       if (!opponent.isShielded && checkCollision(opponent)) {
         if (hasShield) {
           opponent.isShielded = true
@@ -68,10 +71,13 @@ content.system.opponents = (() => {
         if (opponent.isFresh) {
           // Mark as unfresh so it enters the race
           opponent.isFresh = false
+          opponent.y = position.y // Force player to move
         } else {
           // Reposition ahead
           opponent.x = lapDistance
-          opponent.y = engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius)
+          opponent.y = i % 2
+            ? engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius)
+            : position.y // Force player to move
         }
 
         opponent.isShielded = false
