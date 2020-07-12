@@ -14,7 +14,7 @@
     transform: translate3d(0%, 0%, 0);
   }
   .a-app--screen-inactive .a-game--notice {
-    transform: scale3d(0.0625, 1, 1);
+    transform: rotate(179deg);
   }
 }
 
