@@ -65,7 +65,7 @@ content.system.music = (() => {
       return this
     },
     unblur: function () {
-      engine.audio.ramp.exponential(filter.frequency, engine.const.maxFrequency, 2)
+      engine.audio.ramp.exponential(filter.frequency, engine.const.maxFrequency, 1/2)
       return this
     },
     update: function (delta) {
