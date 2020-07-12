@@ -8,25 +8,31 @@ content.sfx.boost = () => {
 
   const frequency = engine.utility.midiToFrequency(48)
 
-  const jump = engine.audio.synth.createFm({
+  const jump = engine.audio.synth.createMod({
+    amodDepth: 1/4,
+    amodFrequency: 16,
+    amodType: 'triangle',
     carrierFrequency: frequency,
+    carrierGain: 3/4,
     carrierType: 'square',
-    modDepth: frequency,
-    modFrequency: engine.utility.addInterval(frequency, 30/12),
-    modType: 'sawtooth',
+    fmodDepth: frequency,
+    fmodFrequency: engine.utility.addInterval(frequency, 30/12),
+    fmodType: 'sawtooth',
   }).filtered({
     frequency: frequency * 16,
   }).connect(content.sfx.bus)
 
   jump.param.detune.setValueAtTime(1200, now)
-  jump.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/16)
-  jump.param.detune.linearRampToValueAtTime(1200, now + 1/4)
+  jump.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/32)
+  jump.param.detune.linearRampToValueAtTime(1200, now + 1/8)
+  jump.param.detune.linearRampToValueAtTime(12000, now + 4)
 
   jump.param.gain.setValueAtTime(engine.const.zeroGain, now)
   jump.param.gain.exponentialRampToValueAtTime(1/8, now + 1/32)
-  jump.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 4)
+  jump.param.gain.exponentialRampToValueAtTime(1/32, now + 1/4)
+  jump.param.gain.linearRampToValueAtTime(engine.const.zeroGain, now + 3)
 
-  jump.stop(now + 4)
+  jump.stop(now + 3)
 }
 
 content.sfx.gameOver = () => {
@@ -87,7 +93,7 @@ content.sfx.lap = () => {
   synth.param.detune.linearRampToValueAtTime(1200, now + 1/4)
 
   synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
-  synth.param.gain.exponentialRampToValueAtTime(1/16, now + 1/32)
+  synth.param.gain.exponentialRampToValueAtTime(1/8, now + 1/32)
   synth.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
 
   synth.stop(now + 3)
@@ -102,7 +108,7 @@ content.sfx.shieldDown = () => {
     frequency,
     harmonic: [
       {
-        coefficient: 1,
+        coefficient: 0.5,
         gain: 1,
         type: 'sawtooth',
       },
@@ -134,7 +140,8 @@ content.sfx.shieldDown = () => {
 
   const lfo = engine.audio.synth.createLfo({
     depth: 1/4,
-    frequency: 8,
+    frequency: 16,
+    type: 'triangle',
   })
 
   const mixer = engine.audio.context().createGain()
@@ -157,7 +164,7 @@ content.sfx.shieldUp = () => {
     frequency,
     harmonic: [
       {
-        coefficient: 1,
+        coefficient: 0.5,
         gain: 1,
         type: 'sawtooth',
       },
@@ -189,7 +196,8 @@ content.sfx.shieldUp = () => {
 
   const lfo = engine.audio.synth.createLfo({
     depth: 1/4,
-    frequency: 8,
+    frequency: 16,
+    type: 'triangle',
   })
 
   const mixer = engine.audio.context().createGain()
