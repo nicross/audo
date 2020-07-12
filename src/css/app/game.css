@@ -13,6 +13,9 @@
   .a-app--screen-active .a-game--notice {
     transform: translate3d(0%, 0%, 0);
   }
+  .a-app--screen-inactive .a-game--notice {
+    transform: scale3d(2, 2, 1);
+  }
 }
 
 @keyframes a-game--notice {
