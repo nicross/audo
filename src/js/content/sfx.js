@@ -4,8 +4,29 @@ content.sfx.bus = engine.audio.mixer.createBus()
 content.sfx.bus.gain.value = engine.utility.fromDb(0)
 
 content.sfx.boost = () => {
-  // TODO
-  console.log('boost')
+  const now = engine.audio.time()
+
+  const frequency = engine.utility.midiToFrequency(48)
+
+  const jump = engine.audio.synth.createFm({
+    carrierFrequency: frequency,
+    carrierType: 'square',
+    modDepth: frequency,
+    modFrequency: engine.utility.addInterval(frequency, 30/12),
+    modType: 'sawtooth',
+  }).filtered({
+    frequency: frequency * 16,
+  }).connect(content.sfx.bus)
+
+  jump.param.detune.setValueAtTime(1200, now)
+  jump.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/16)
+  jump.param.detune.linearRampToValueAtTime(1200, now + 1/4)
+
+  jump.param.gain.setValueAtTime(engine.const.zeroGain, now)
+  jump.param.gain.exponentialRampToValueAtTime(1/8, now + 1/32)
+  jump.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 4)
+
+  jump.stop(now + 4)
 }
 
 content.sfx.gameOver = () => {
