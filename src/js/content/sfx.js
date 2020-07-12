@@ -3,6 +3,10 @@ content.sfx = {}
 content.sfx.bus = engine.audio.mixer.createBus()
 content.sfx.bus.gain.value = engine.utility.fromDb(0)
 
+content.sfx.boost = () => {
+  // TODO
+}
+
 content.sfx.gameOver = () => {
   const now = engine.audio.time()
 
@@ -65,4 +69,12 @@ content.sfx.lap = () => {
   synth.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
 
   synth.stop(now + 3)
+}
+
+content.sfx.shieldDown = () => {
+  // TODO
+}
+
+content.sfx.shieldUp = () => {
+  // TODO
 }

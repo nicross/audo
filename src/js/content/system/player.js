@@ -30,13 +30,13 @@ content.system.player = (() => {
   }
 
   return engine.utility.pubsub.decorate({
-    distance: () => distance,
-    lapDistance: () => lapDistance,
-    laps: () => laps,
-    increment: function (value = 0) {
+    addVelocity: function (value = 0) {
       velocity += value
       return this
     },
+    distance: () => distance,
+    lapDistance: () => lapDistance,
+    laps: () => laps,
     relativeVelocity: () => relativeVelocity,
     reset: function () {
       distance = 0
