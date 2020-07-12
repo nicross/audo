@@ -1,3 +1,4 @@
+engine.const.audioLookaheadTime = 1/120
 engine.const.distancePower = 1.75
 engine.const.distancePowerHorizon = true
 engine.const.distancePowerExponent = 1
