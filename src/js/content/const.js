@@ -12,7 +12,7 @@ content.const = {
   maxVelocity: 10 ** 6,
   minOpponents: 3,
   opponentRadius: 0.75,
-  powerupRadius: 1,
+  powerupRadius: 1.5,
   roadRadius: 10,
 }
 
