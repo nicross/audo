@@ -1,4 +1,6 @@
-.a-gameOver {}
+.a-gameOver {
+  overflow: hidden;
+}
   .a-gameOver--highscore {
     font-size: 0.75em;
     margin-top: 0.5em;
@@ -34,7 +36,7 @@
     text-transform: uppercase;
     transition: letter-spacing 0.5s linear;
     white-space: nowrap;
-    width: 100%;
+    width: 400%;
   }
 
 .a-app--screen-active .a-gameOver--title {
