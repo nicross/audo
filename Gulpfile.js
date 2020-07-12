@@ -78,6 +78,7 @@ gulp.task('dist-electron', async () => {
 gulp.task('dist-html5', () => {
   // XXX: Archive has no root directory
   return gulp.src([
+    'public/font/*',
     'public/favicon.png',
     'public/index.html',
     'public/scripts.min.js',
