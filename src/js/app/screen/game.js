@@ -7,8 +7,9 @@ app.screen.game = (() => {
 
     // Cut the sounds
     engine.props.reset()
+    content.system.music.blur()
 
-    // TODO: Duration should be length of gameOver sfx (i.e. screen reader accessibility)
+    // Duration of sound that would interfere with screen readers
     setTimeout(() => app.state.screen.dispatch('gameOver'), 2000)
   }
 
@@ -24,6 +25,7 @@ app.screen.game = (() => {
     })
 
     engine.loop.resume()
+    content.system.music.unblur()
   }
 
   function onExit() {
