@@ -10,8 +10,6 @@ content.system.powerups = (() => {
     onLap: function () {
       powerup.setCooldown(false)
       powerup.x = content.system.player.lapDistance() * engine.utility.random.float(1/3, 2/3)
-      powerup.y = engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius)
-
       return this
     },
     reset: function () {
