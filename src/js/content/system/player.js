@@ -58,6 +58,9 @@ content.system.player = (() => {
       lapDistance = calculateLapDistance()
       lapTimer = calculateLapTimer()
 
+      // XXX: Hack to get distancePowerHorizon
+      engine.const.streamerRadius = lapDistance / 2
+
       return this
     },
     time: () => time,
@@ -82,6 +85,9 @@ content.system.player = (() => {
         pubsub.emit('lap')
         content.sfx.lap()
       }
+
+      // XXX: Hack to get distancePowerHorizon
+      engine.const.streamerRadius = lapDistance / 2
 
       return this
     },

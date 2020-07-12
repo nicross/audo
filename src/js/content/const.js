@@ -1,3 +1,6 @@
+engine.const.distancePower = 1.75
+engine.const.distancePowerHorizon = true
+engine.const.distancePowerExponent = 1
 engine.const.movementDeceleration = engine.const.gravity
 engine.const.propFadeDuration = 1/4
 
