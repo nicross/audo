@@ -24,6 +24,7 @@ content.prop.powerup.base = engine.prop.base.invent({
   applyBoost: function () {
     const velocity = content.system.player.velocity()
     content.system.player.addVelocity(velocity * 0.5)
+    content.system.player.invincibility.add(3)
     content.sfx.boost()
     return this
   },

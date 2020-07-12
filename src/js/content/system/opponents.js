@@ -49,6 +49,7 @@ content.system.opponents = (() => {
 
   function update() {
     const hasShield = content.system.player.shield.has(),
+      isInvincible = content.system.player.invincibility.has(),
       lapDistance = content.system.player.lapDistance() / 2,
       position = engine.position.get(),
       relativeVelocity = content.system.player.relativeVelocity()
@@ -58,7 +59,7 @@ content.system.opponents = (() => {
     for (let i = 0; i < opponents.length; i += 1) {
       const opponent = opponents[i]
 
-      if (!opponent.isShielded && checkCollision(opponent)) {
+      if (!isInvincible && !opponent.isShielded && checkCollision(opponent)) {
         if (hasShield) {
           opponent.isShielded = true
           shieldBroken = true
