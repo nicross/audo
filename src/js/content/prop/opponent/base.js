@@ -5,11 +5,9 @@ content.prop.opponent.base = engine.prop.base.invent({
   }) {
     this.index = index
 
-    this.buildAeroSynth()
     this.buildToneSynth()
   },
   onDestroy: function () {
-    this.destroyAeroSynth()
     this.destroyToneSynth()
 
     if (this.collisionSynth) {
@@ -17,26 +15,10 @@ content.prop.opponent.base = engine.prop.base.invent({
     }
   },
   onUpdate: function ({delta}) {
-    const velocityRatio = Math.min(1, Math.abs(this.velocity) / 30)
+    const velocityRatio = Math.min(1, Math.abs(this.velocity) / 20)
 
-    this.updateAeroSynth(velocityRatio)
     this.updateCollisionSynth(delta)
     this.updateToneSynth(velocityRatio)
-  },
-  buildAeroSynth: function () {
-    this.aeroSynth = engine.audio.synth.createBuffer({
-      buffer: engine.audio.buffer.noise.pink(),
-    }).filtered().connect(this.output.input)
-
-    this.aeroSynth.param.gain.value = engine.utility.fromDb(-6)
-    this.aeroSynth.filter.frequency.value = 250
-  },
-  destroyAeroSynth: function () {
-    this.aeroSynth.stop()
-    delete this.aeroSynth
-  },
-  updateAeroSynth: function (velocityRatio) {
-    this.aeroSynth.filter.frequency.value = engine.utility.lerp(250, 1000, velocityRatio)
   },
   buildCollisionSynth: function () {
     const note = 60 + this.index
