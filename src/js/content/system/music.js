@@ -70,7 +70,7 @@ content.system.music = (() => {
     update: function (delta) {
       const position = engine.position.get()
 
-      const gain = engine.utility.clamp(1 - (Math.abs(position.y) / content.const.roadRadius), 0, 1)
+      const gain = engine.utility.clamp(1 - (Math.abs(position.y) / content.const.roadRadius), 0.5, 1)
       const pan = engine.utility.clamp(position.y / content.const.roadRadius, -1, 1)
 
       engine.audio.ramp.linear(mixer.gain, gain, delta)
