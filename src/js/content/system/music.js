@@ -9,7 +9,7 @@ content.system.music = (() => {
     kick,
     timer
 
-  bus.gain.value = engine.utility.fromDb(-12)
+  bus.gain.value = engine.utility.fromDb(-10.5)
   filter.frequency.value = engine.const.maxFrequency
 
   panner.connect(mixer)
