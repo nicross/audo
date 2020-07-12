@@ -13,7 +13,7 @@ content.system.player.audio.shield = (() => {
       frequency: 1/2,
       depth: frequency * 2,
     })).assign('lfoPanner', engine.audio.synth.createLfo({
-      frequency: 1,
+      frequency: 1/3,
       depth: 1/2,
     })).chainAssign('panner', engine.audio.context().createStereoPanner())
 
