@@ -11,4 +11,4 @@ content.const = {
   roadRadius: 10,
 }
 
-engine.const.movementMaxVelocity = content.const.roadRadius * 2
+engine.const.movementMaxVelocity = content.const.roadRadius * 4

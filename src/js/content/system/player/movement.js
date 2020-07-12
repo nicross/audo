@@ -28,7 +28,7 @@ content.system.player.movement = {
     }
 
     const relativeVelocity = content.system.player.relativeVelocity()
-    engine.const.movementAcceleration = Math.log(relativeVelocity)
+    engine.const.movementAcceleration = Math.log(relativeVelocity) * 2
 
     engine.movement.update({
       translate: {
