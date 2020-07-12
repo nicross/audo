@@ -9,7 +9,7 @@ content.system.powerups = (() => {
     get: () => powerup,
     onLap: function () {
       powerup.setCooldown(false)
-      powerup.x = content.system.player.lapDistance() * engine.utility.random.float(1/3, 2/3)
+      powerup.x = content.system.player.lapDistance() * engine.utility.random.float(1/4, 1/2)
       return this
     },
     reset: function () {
@@ -19,7 +19,7 @@ content.system.powerups = (() => {
     start: function () {
       powerup = engine.props.create(getPowerupType(), {
         radius: content.const.powerupRadius,
-        x: content.system.player.lapDistance() * engine.utility.random.float(1/3, 2/3),
+        x: content.system.player.lapDistance() * engine.utility.random.float(1/4, 1/2),
         y: 0,
       })
 
