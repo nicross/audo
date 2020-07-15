@@ -58,6 +58,7 @@ gulp.task('dist-electron', async () => {
       'node_modules',
       'package-lock.json',
       'README.md',
+      'ROADMAP.md',
       'src',
     ],
     out: 'dist',
