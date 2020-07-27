@@ -23,8 +23,10 @@ app.storage = (() => {
     clearHighscore: function () {
       return this.setHighscore(0)
     },
-    getHighscore: () => get(highscoreKey) || 0,
-    hasHighscore: () => Boolean(get(highscoreKey)),
+    getHighscore: () => Number(get(highscoreKey)) || 0,
+    hasHighscore: function () {
+      return Boolean(this.getHighscore())
+    },
     setHighscore: function (value) {
       set(highscoreKey, value)
       return this
