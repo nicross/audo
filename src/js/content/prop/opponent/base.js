@@ -55,15 +55,13 @@ content.prop.opponent.base = engine.prop.base.invent({
     const yDistance = Math.abs(this.y - position.y)
     let collisionChance = engine.utility.clamp(engine.utility.scale(yDistance, this.radius, this.radius * 8, 1, 0), 0, 1)
 
-    if (
-         collisionChance
-      && this.collisionSynth
-      && (
-           (this.velocity > 0 && this.x > 0)
-        || (this.velocity < 0 && this.x < 0)
-      )
-    ) {
-      collisionChance = (1 - Math.min(1, this.distance / Math.abs(this.velocity))) * collisionChance
+    const isIncoming = (this.velocity < 0 && this.x > 0)
+      || (this.velocity > 0 && this.x < 0)
+
+    if (collisionChance && !isIncoming && this.collisionSynth) {
+      collisionChance = (1 - Math.min(1, Math.abs(this.x) / Math.abs(this.velocity))) * collisionChance
+    } else if (collisionChance && !isIncoming) {
+      collisionChance = 0
     }
 
     if (!collisionChance) {
