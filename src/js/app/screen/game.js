@@ -26,6 +26,7 @@ app.screen.game = (() => {
 
     engine.loop.resume()
     content.system.music.unblur()
+    content.sfx.start()
   }
 
   function onExit() {

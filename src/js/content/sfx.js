@@ -226,3 +226,34 @@ content.sfx.shieldUp = () => {
   lfo.stop(now + 3)
   synth.stop(now + 3)
 }
+
+content.sfx.start = () => {
+  const now = engine.audio.time()
+
+  const frequency = engine.utility.midiToFrequency(36)
+
+  const synth = engine.audio.synth.createMod({
+    amodDepth: 1/4,
+    amodFrequency: 16,
+    amodType: 'triangle',
+    carrierFrequency: frequency,
+    carrierGain: 3/4,
+    carrierType: 'triangle',
+    fmodDepth: frequency,
+    fmodFrequency: engine.utility.addInterval(frequency, 30/12),
+    fmodType: 'square',
+  }).filtered({
+    frequency: frequency * 16,
+  }).connect(content.sfx.bus)
+
+  synth.param.detune.setValueAtTime(12000, now)
+  synth.param.detune.linearRampToValueAtTime(1200, now + 1)
+  synth.param.detune.linearRampToValueAtTime(12000, now + 5)
+
+  synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
+  synth.param.gain.exponentialRampToValueAtTime(1/4, now + 1/64)
+  synth.param.gain.exponentialRampToValueAtTime(1/32, now + 1)
+  synth.param.gain.linearRampToValueAtTime(engine.const.zeroGain, now + 5)
+
+  synth.stop(now + 5)
+}
