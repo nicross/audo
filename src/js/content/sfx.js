@@ -41,11 +41,11 @@ content.sfx.gameOver = () => {
   const noise = engine.audio.synth.createBuffer({
     buffer: engine.audio.buffer.noise.pink(),
   }).filtered({
-    frequency: 120,
+    frequency: 240,
   }).connect(content.sfx.bus)
 
   noise.param.gain.setValueAtTime(engine.const.zeroGain, now)
-  noise.param.gain.exponentialRampToValueAtTime(8, now + 1/16) // XXX: Above 0 dB
+  noise.param.gain.exponentialRampToValueAtTime(8, now + 1/32) // XXX: Above 0 dB
   noise.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 4)
 
   noise.stop(now + 4)
@@ -56,27 +56,32 @@ content.sfx.gameOver = () => {
 
   tone.param.gain.setValueAtTime(engine.const.zeroGain, now)
   tone.param.gain.linearRampToValueAtTime(1/256, now + 1.5)
-  tone.param.gain.linearRampToValueAtTime(engine.const.zeroGain, now + 3)
+  tone.param.gain.linearRampToValueAtTime(engine.const.zeroGain, now + 4)
 
-  tone.stop(now + 3)
+  tone.stop(now + 4)
 
-  const zap = engine.audio.synth.createBuffer({
-    buffer: engine.audio.buffer.noise.white(),
+  const zapFrequency = engine.utility.midiToFrequency(36)
+
+  const zap = engine.audio.synth.createMod({
+    amodDepth: 1/4,
+    amodFrequency: 16,
+    amodType: 'triangle',
+    carrierFrequency: zapFrequency,
+    carrierGain: 3/4,
+    carrierType: 'square',
+    fmodDepth: zapFrequency,
+    fmodFrequency: engine.utility.addInterval(zapFrequency, 30/12),
+    fmodType: 'sawtooth',
   }).filtered({
-    type: 'bandpass',
+    frequency: zapFrequency * 16,
   }).connect(content.sfx.bus)
 
+  zap.param.detune.setValueAtTime(8000, now)
+  zap.param.detune.linearRampToValueAtTime(0, now + 3)
+
   zap.param.gain.setValueAtTime(engine.const.zeroGain, now)
-  zap.param.gain.exponentialRampToValueAtTime(1/32, now + 1/32)
+  zap.param.gain.exponentialRampToValueAtTime(1/8, now + 1/16)
   zap.param.gain.linearRampToValueAtTime(engine.const.zeroGain, now + 2)
-
-  zap.filter.frequency.setValueAtTime(engine.const.minFrequency, now)
-  zap.filter.frequency.exponentialRampToValueAtTime(engine.const.maxFrequency, now + 1/4)
-  zap.filter.frequency.exponentialRampToValueAtTime(engine.const.minFrequency, now + 2)
-
-  zap.filter.Q.setValueAtTime(1, now)
-  zap.filter.Q.linearRampToValueAtTime(10, now + 1/32)
-  zap.filter.Q.linearRampToValueAtTime(1, now + 2)
 
   zap.stop(now + 2)
 }
@@ -154,11 +159,11 @@ content.sfx.shieldDown = () => {
   const noise = engine.audio.synth.createBuffer({
     buffer: engine.audio.buffer.noise.pink(),
   }).filtered({
-    frequency: 80,
+    frequency: 120,
   }).connect(content.sfx.bus)
 
   noise.param.gain.setValueAtTime(engine.const.zeroGain, now)
-  noise.param.gain.exponentialRampToValueAtTime(4, now + 1/16) // XXX: Above 0 dB
+  noise.param.gain.exponentialRampToValueAtTime(8, now + 1/32) // XXX: Above 0 dB
   noise.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
 
   lfo.stop(now + 3)
