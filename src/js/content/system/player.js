@@ -19,10 +19,6 @@ content.system.player = (() => {
     return 1 - (ratio ** 4)
   }
 
-  function calculateRelativeVelocity() {
-    return Math.log(velocity) / Math.log(1.5)
-  }
-
   function calculateVelocityRatio() {
     return engine.utility.clamp(Math.log2(velocity) / Math.log2(content.const.maxVelocity), 0, 1)
   }
@@ -30,7 +26,11 @@ content.system.player = (() => {
   return engine.utility.pubsub.decorate({
     acceleration: () => acceleration,
     addVelocity: function (value = 0) {
+      const previous = velocity
+
       velocity += value
+      relativeVelocity += (velocity / previous) - 1
+
       return this
     },
     distance: () => distance,
@@ -57,8 +57,8 @@ content.system.player = (() => {
       time = 0
       velocity = content.const.initialVelocity
 
-      relativeVelocity = calculateRelativeVelocity()
       velocityRatio = calculateVelocityRatio()
+      relativeVelocity = content.const.minRelativeVelocity
 
       // XXX: Hack for distancePowerHorizon
       engine.const.streamerRadius = lapDistance / 2
@@ -72,8 +72,10 @@ content.system.player = (() => {
       time += delta
       velocity += delta * Math.log(time) * acceleration
 
-      relativeVelocity = calculateRelativeVelocity()
       velocityRatio = calculateVelocityRatio()
+      if (relativeVelocity < content.const.maxRelativeVelocity) {
+        relativeVelocity += accelerationDelta / content.const.lapTime
+      }
 
 
       distance += velocity * delta
