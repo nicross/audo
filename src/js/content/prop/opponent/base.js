@@ -91,7 +91,7 @@ content.prop.opponent.base = engine.prop.base.invent({
     engine.audio.ramp.linear(this.collisionSynth.param.gain, collisionChance * compensation, delta)
   },
   buildToneSynth: function () {
-    const frequency = engine.utility.midiToFrequency(36 + this.index)
+    const frequency = engine.utility.midiToFrequency(48 + this.index)
 
     this.toneSynth = engine.audio.synth.createSimple({
       frequency,
