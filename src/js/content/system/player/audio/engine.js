@@ -9,7 +9,7 @@ content.system.player.audio.engine = (() => {
   const lfo = engine.audio.synth.createLfo().shaped(engine.audio.shape.distort())
 
   input.connect(output)
-  input.gain.value = engine.utility.fromDb(-9)
+  input.gain.value = engine.utility.fromDb(-10.5)
 
   lfo.param.depth.value = 0
   lfo.connect(output.gain)
