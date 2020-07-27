@@ -13,9 +13,7 @@ content.system.music = (() => {
     frequency: 120,
   })
 
-  let hat,
-    kick,
-    timer
+  let timer
 
   bus.gain.value = engine.utility.fromDb(-10.5)
   filter.frequency.value = engine.const.maxFrequency
@@ -33,7 +31,7 @@ content.system.music = (() => {
     const duration = calculateDuration(),
       now = engine.audio.time()
 
-    kick = engine.audio.synth.createSimple({
+    const kick = engine.audio.synth.createSimple({
       frequency: 120,
     }).connect(panner)
 
@@ -42,7 +40,7 @@ content.system.music = (() => {
     kick.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 1/4)
     kick.stop(now + 1/4)
 
-    hat = engine.audio.synth.createBuffer({
+    const hat = engine.audio.synth.createBuffer({
       buffer: engine.audio.buffer.noise.white(),
     }).filtered({
       frequency: 10000,
@@ -54,6 +52,7 @@ content.system.music = (() => {
     hat.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + duration/3 - engine.const.zeroTime)
     hat.param.gain.exponentialRampToValueAtTime(1/64, now + duration/2)
     hat.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + duration*2/3 - engine.const.zeroTime)
+    hat.stop(now + duration)
 
     sub.param.gain.setValueAtTime(1/3, now)
     sub.param.gain.exponentialRampToValueAtTime(1/256, now + 1/64)
