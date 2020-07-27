@@ -39,6 +39,7 @@ content.prop.powerup.base = engine.prop.base.invent({
   },
   applyShield: function () {
     content.system.player.shield.grant()
+    content.system.player.invincibility.add(3)
     return this
   },
   setCooldown: function (state) {
