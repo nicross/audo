@@ -42,6 +42,17 @@ content.system.player = (() => {
       return this
     },
     distance: () => distance,
+    inspect: () => ({
+      acceleration,
+      distance,
+      lapDistance,
+      laps,
+      lapTimer,
+      relativeVelocity,
+      time,
+      velocity,
+      velocityRatio,
+    }),
     lapDistance: () => lapDistance,
     laps: () => laps,
     relativeVelocity: () => relativeVelocity,
