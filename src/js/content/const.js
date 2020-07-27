@@ -6,7 +6,6 @@ engine.const.movementDeceleration = engine.const.gravity
 engine.const.propFadeDuration = 1/4
 
 content.const = {
-  initialVelocity: 25,
   lapTime: 30,
   maxOpponents: 12,
   maxRelativeVelocity: 22,
