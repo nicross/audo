@@ -21,7 +21,7 @@ content.prop.opponent.base = engine.prop.base.invent({
     this.updateToneSynth(velocityRatio)
   },
   buildCollisionSynth: function () {
-    const note = 60 + this.index
+    const note = 66 + this.index
     const frequency = engine.utility.midiToFrequency(note)
 
     this.collisionSynth = engine.audio.synth.createMod({
