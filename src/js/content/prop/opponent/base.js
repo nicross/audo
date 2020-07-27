@@ -96,8 +96,10 @@ content.prop.opponent.base = engine.prop.base.invent({
     this.toneSynth = engine.audio.synth.createSimple({
       frequency,
       type: 'square',
-    }).filtered({
-      frequency: frequency * 16,
+    }).shaped(
+      engine.audio.shape.noise4()
+    ).filtered({
+      frequency: frequency * 4,
     }).connect(this.output.input)
 
     this.toneSynth.param.gain.value = engine.utility.fromDb(-3)
