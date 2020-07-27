@@ -19,14 +19,6 @@ content.system.player = (() => {
     return 1 - (ratio ** 4)
   }
 
-  function calculateLapDistance() {
-    return Math.abs(relativeVelocity) * content.const.lapTime
-  }
-
-  function calculateLapTimer() {
-    return content.const.lapTime * velocity
-  }
-
   function calculateRelativeVelocity() {
     return Math.log(velocity) / Math.log(1.5)
   }
@@ -60,16 +52,15 @@ content.system.player = (() => {
       acceleration = 0
       distance = 0
       laps = 0
+      lapDistance = content.const.lapTime * content.const.minRelativeVelocity
+      lapTimer = lapDistance
       time = 0
       velocity = content.const.initialVelocity
 
       relativeVelocity = calculateRelativeVelocity()
       velocityRatio = calculateVelocityRatio()
 
-      lapDistance = calculateLapDistance()
-      lapTimer = calculateLapTimer()
-
-      // XXX: Hack to get distancePowerHorizon
+      // XXX: Hack for distancePowerHorizon
       engine.const.streamerRadius = lapDistance / 2
 
       return this
@@ -84,21 +75,21 @@ content.system.player = (() => {
       relativeVelocity = calculateRelativeVelocity()
       velocityRatio = calculateVelocityRatio()
 
-      const velocityDelta = velocity * delta
 
-      distance += velocityDelta
-      lapTimer -= velocityDelta
+      distance += velocity * delta
+      lapTimer -= relativeVelocity * delta
 
       if (lapTimer < 0) {
         laps += 1
-        lapDistance = calculateLapDistance()
-        lapTimer = calculateLapTimer()
+        lapDistance = relativeVelocity * content.const.lapTime
+        lapTimer = lapDistance
+
+        // XXX: Hack for distancePowerHorizon
+        engine.const.streamerRadius = lapDistance / 2
+
         pubsub.emit('lap')
         content.sfx.lap()
       }
-
-      // XXX: Hack to get distancePowerHorizon
-      engine.const.streamerRadius = lapDistance / 2
 
       return this
     },
