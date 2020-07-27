@@ -66,6 +66,8 @@ content.system.opponents = (() => {
         } else {
           isCollision = true
         }
+
+        opponent.duck()
       }
 
       if (opponent.distance > lapDistance) {

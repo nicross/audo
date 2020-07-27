@@ -42,6 +42,13 @@ content.prop.opponent.base = engine.prop.base.invent({
     this.collisionSynth.stop().disconnect()
     delete this.collisionSynth
   },
+  duck: function () {
+    const now = engine.audio.time()
+    this.output.input.gain.setValueAtTime(1, now)
+    this.output.input.gain.exponentialRampToValueAtTime(engine.utility.fromDb(-24), now + 1/32)
+    this.output.input.gain.exponentialRampToValueAtTime(1, now + 3)
+    return this
+  },
   updateCollisionSynth: function (delta) {
     const position = engine.position.get()
 
