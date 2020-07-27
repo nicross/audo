@@ -5,6 +5,14 @@ content.system.music = (() => {
     mixer = context.createGain(),
     panner = context.createStereoPanner()
 
+  const sub = engine.audio.synth.createSimple({
+    frequency: engine.utility.midiToFrequency(36),
+    gain: engine.const.zeroGain,
+    type: 'triangle',
+  }).filtered({
+    frequency: 120,
+  })
+
   let hat,
     kick,
     timer
@@ -12,6 +20,7 @@ content.system.music = (() => {
   bus.gain.value = engine.utility.fromDb(-10.5)
   filter.frequency.value = engine.const.maxFrequency
 
+  sub.connect(panner)
   panner.connect(mixer)
   mixer.connect(filter)
   filter.connect(bus)
@@ -45,6 +54,10 @@ content.system.music = (() => {
     hat.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + duration/3 - engine.const.zeroTime)
     hat.param.gain.exponentialRampToValueAtTime(1/64, now + duration/2)
     hat.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + duration*2/3 - engine.const.zeroTime)
+
+    sub.param.gain.setValueAtTime(1/3, now)
+    sub.param.gain.exponentialRampToValueAtTime(1/256, now + 1/64)
+    sub.param.gain.linearRampToValueAtTime(1/3, now + duration)
 
     timer = context.createConstantSource()
     timer.start(now)
