@@ -54,9 +54,9 @@ content.system.music = (() => {
     hat.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + duration*2/3 - engine.const.zeroTime)
     hat.stop(now + duration)
 
-    sub.param.gain.setValueAtTime(1/3, now)
+    sub.param.gain.setValueAtTime(sub.param.gain.value, now)
     sub.param.gain.exponentialRampToValueAtTime(1/256, now + 1/64)
-    sub.param.gain.linearRampToValueAtTime(1/3, now + duration)
+    sub.param.gain.linearRampToValueAtTime(1/2, now + duration)
 
     timer = context.createConstantSource()
     timer.start(now)
