@@ -22,7 +22,7 @@ function createWindow() {
     icon: path.join(__dirname, '../public/favicon.png'),
     title: package.name,
     webPreferences: {
-      devTools: true, // TODO: Disable in submitted build
+      devTools: false,
       preload: path.join(__dirname, 'preload.js'),
     }
   })
