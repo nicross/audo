@@ -1,0 +1,27 @@
+.a-tutorial {}
+  .a-tutorial--content {
+    margin: 1.5em 2em;
+    max-width: 60ch;
+  }
+  .a-tutorial--content p + p {
+    margin-top: 1em;
+  }
+  .a-tutorial--start {
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    line-height: 3;
+    margin-top: 0.5em;
+    padding: 0 1em;
+  }
+  .a-tutorial--start:hover,
+  .a-tutorial--start:focus {
+    border-style: dashed;
+  }
+  .a-tutorial--title {
+    font-family: ComfortaaBold, sans-serif;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    text-align: center;
+    text-transform: uppercase;
+  }

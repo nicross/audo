@@ -18,6 +18,15 @@ app.state.screen = engine.utility.machine.create({
     },
     splash: {
       start: function () {
+        if (app.storage.getHighscore() < 500) {
+          this.change('tutorial')
+        } else {
+          this.change('game')
+        }
+      },
+    },
+    tutorial: {
+      start: function () {
         this.change('game')
       },
     },
@@ -55,6 +64,7 @@ app.state.screen.on('enter', (e) => {
     game: '.a-app--game',
     gameOver: '.a-app--gameOver',
     splash: '.a-app--splash',
+    tutorial: '.a-app--tutorial',
   }
 
   const selector = selectors[e.currentState]

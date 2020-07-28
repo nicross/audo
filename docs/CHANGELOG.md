@@ -2,6 +2,7 @@
 
 ## v1.1.0
 - Added sound effect to race start
+- Added tutorial screen for players with high scores below 500
 - Applied invincibility for duration of shield granted sound effect
 - Converted wind to stereo
 - Fixed garbage collection issue with dynamic soundtrack
