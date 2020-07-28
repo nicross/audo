@@ -8,6 +8,7 @@
   - Reduced initial opponents to zero
   - Reduced initial velocity to zero
   - Rescaled acceleration to be more gradual
+  - Slightly reduce drift speed on direction change
 - **Improved dynamic soundtrack**
   - Added sub bass
   - Fixed garbage collection issue
