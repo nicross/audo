@@ -137,7 +137,8 @@ content.sfx.shieldDown = () => {
 
   synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
   synth.param.gain.exponentialRampToValueAtTime(1, now + 1/16)
-  synth.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
+  synth.param.gain.exponentialRampToValueAtTime(1/16, now + 1/2)
+  synth.param.gain.linearRampToValueAtTime(engine.const.zeroGain, now + 1)
 
   synth.param.detune.setValueAtTime(-600, now)
   synth.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/16)
@@ -167,9 +168,9 @@ content.sfx.shieldDown = () => {
   noise.param.gain.exponentialRampToValueAtTime(8, now + 1/32) // XXX: Above 0 dB
   noise.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
 
-  lfo.stop(now + 3)
+  lfo.stop(now + 1)
   noise.stop(now + 3)
-  synth.stop(now + 3)
+  synth.stop(now + 1)
 }
 
 content.sfx.shieldUp = () => {
@@ -204,7 +205,8 @@ content.sfx.shieldUp = () => {
 
   synth.param.gain.setValueAtTime(engine.const.zeroGain, now)
   synth.param.gain.exponentialRampToValueAtTime(1, now + 1/16)
-  synth.param.gain.exponentialRampToValueAtTime(engine.const.zeroGain, now + 3)
+  synth.param.gain.exponentialRampToValueAtTime(1/16, now + 1/2)
+  synth.param.gain.linearRampToValueAtTime(engine.const.zeroGain, now + 1)
 
   synth.param.detune.setValueAtTime(1200, now)
   synth.param.detune.linearRampToValueAtTime(engine.const.zero, now + 1/16)
@@ -224,8 +226,8 @@ content.sfx.shieldUp = () => {
   synth.connect(mixer)
   mixer.connect(content.sfx.bus)
 
-  lfo.stop(now + 3)
-  synth.stop(now + 3)
+  lfo.stop(now + 1)
+  synth.stop(now + 1)
 }
 
 content.sfx.start = () => {
