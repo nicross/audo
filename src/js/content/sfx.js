@@ -15,6 +15,7 @@ content.sfx.boost = () => {
     carrierFrequency: frequency,
     carrierGain: 3/4,
     carrierType: 'square',
+    fmodDetune: engine.utility.random.float(-25, 25),
     fmodDepth: frequency,
     fmodFrequency: engine.utility.addInterval(frequency, 30/12),
     fmodType: 'sawtooth',
@@ -240,6 +241,7 @@ content.sfx.start = () => {
     carrierGain: 3/4,
     carrierType: 'triangle',
     fmodDepth: frequency,
+    fmodDetune: engine.utility.random.float(-25, 25),
     fmodFrequency: engine.utility.addInterval(frequency, 30/12),
     fmodType: 'square',
   }).filtered({
