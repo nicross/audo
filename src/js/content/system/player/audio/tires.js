@@ -38,7 +38,7 @@ content.system.player.audio.tires = (() => {
         y: strength * -movement.angle * engine.const.binauralHeadWidth,
       })
 
-      engine.audio.ramp.linear(synth.param.gain, engine.utility.fromDb(engine.utility.lerpExp(-36, -18, strength, 1/8)), delta)
+      engine.audio.ramp.linear(synth.param.gain, engine.utility.fromDb(engine.utility.lerpExp(-36, -16.5, strength, 1/8)), delta)
       engine.audio.ramp.linear(synth.param.mod.frequency, engine.utility.lerp(10, 60, strength), delta)
 
       return this
