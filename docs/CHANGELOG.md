@@ -15,7 +15,7 @@
 - **Improved sound design**
   - Added sound effect to race start
   - Bumped opponent sounds up an octave
-  - Improved audibility of opponent collision warnings
+  - Improved audibility of collision warnings
   - Increased tire feedback
   - Made collision sounds more impactful
   - Rendered wind in stereo
