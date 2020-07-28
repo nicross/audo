@@ -50,8 +50,10 @@ gulp.task('dist-electron', async () => {
     arch: 'x64',
     asar: true,
     dir: '.',
+    icon: 'assets/icon/icon',
     ignore: [
       '.gitignore',
+      'assets',
       'dist',
       'docs',
       'Gulpfile.js',
