@@ -138,4 +138,5 @@ engine.loop.on('frame', ({ paused }) => {
 
 engine.state.on('import', () => content.system.opponents.start())
 engine.state.on('reset', () => content.system.opponents.reset())
+
 content.system.player.on('lap', () => content.system.opponents.onLap())

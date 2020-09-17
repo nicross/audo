@@ -1,6 +1,14 @@
 app.screen.game = (() => {
   let root
 
+  engine.ready(() => {
+    root = document.querySelector('.a-game')
+    app.utility.focus.trap(root)
+
+    app.state.screen.on('enter-game', onEnter)
+    app.state.screen.on('exit-game', onExit)
+  })
+
   function handleCollision() {
     engine.loop.pause()
     content.sfx.gameOver()
@@ -47,18 +55,4 @@ app.screen.game = (() => {
       app.controls.game()
     )
   }
-
-  return {
-    activate: function () {
-      root = document.querySelector('.a-game')
-      app.utility.focus.trap(root)
-
-      app.state.screen.on('enter-game', onEnter)
-      app.state.screen.on('exit-game', onExit)
-
-      return this
-    },
-  }
 })()
-
-app.once('activate', () => app.screen.game.activate())

@@ -12,7 +12,7 @@ app.state.screen = engine.utility.machine.create({
       },
     },
     none: {
-      activate: function () {
+      ready: function () {
         this.change('splash')
       },
     },
@@ -33,13 +33,13 @@ app.state.screen = engine.utility.machine.create({
   },
 })
 
-app.once('activate', () => {
+engine.ready(() => {
   [...document.querySelectorAll('.a-app--screen')].forEach((element) => {
     element.setAttribute('aria-hidden', 'true')
     element.setAttribute('role', 'persentation')
   })
 
-  app.state.screen.dispatch('activate')
+  app.state.screen.dispatch('ready')
 })
 
 app.state.screen.on('exit', (e) => {

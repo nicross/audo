@@ -2,6 +2,18 @@ app.screen.gameOver = (() => {
   let restart,
     root
 
+  engine.ready(() => {
+    root = document.querySelector('.a-gameOver')
+
+    restart = document.querySelector('.a-gameOver--restart')
+    restart.addEventListener('click', onRestartClick)
+
+    app.utility.focus.trap(root)
+
+    app.state.screen.on('enter-gameOver', onEnter)
+    app.state.screen.on('exit-gameOver', onExit)
+  })
+
   function onEnter() {
     app.utility.focus.set(root)
     engine.loop.on('frame', onFrame)
@@ -52,21 +64,5 @@ app.screen.gameOver = (() => {
     )
   }
 
-  return {
-    activate: function () {
-      root = document.querySelector('.a-gameOver')
-
-      restart = document.querySelector('.a-gameOver--restart')
-      restart.addEventListener('click', onRestartClick)
-
-      app.utility.focus.trap(root)
-
-      app.state.screen.on('enter-gameOver', onEnter)
-      app.state.screen.on('exit-gameOver', onExit)
-
-      return this
-    },
-  }
+  return {}
 })()
-
-app.once('activate', () => app.screen.gameOver.activate())
