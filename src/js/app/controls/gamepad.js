@@ -4,9 +4,11 @@ app.controls.gamepad = {
 
     let x = 0
 
-    if (engine.input.gamepad.hasAxis(0)) {
-      x += engine.input.gamepad.getAxis(0)
-    }
+    x += engine.input.gamepad.getAxis(0)
+    x += engine.input.gamepad.getAxis(2)
+
+    x -= engine.input.gamepad.getAnalog(6)
+    x += engine.input.gamepad.getAnalog(7)
 
     const left = buttons[2] || buttons[4] || buttons[14],
       right = buttons[1] || buttons[5] || buttons[15]
