@@ -29,8 +29,8 @@ content.system.player.audio.tires = (() => {
       return this
     },
     update: function ({delta}) {
-      const movement = engine.movement.get(),
-        strength = movement.velocity / engine.const.movementMaxVelocity
+      const movement = content.system.movement.get(),
+        strength = movement.velocity / content.const.movementMaxVelocity
 
       binaural.update({
         delta,

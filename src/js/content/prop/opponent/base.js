@@ -15,7 +15,7 @@ content.prop.opponent.base = engine.prop.base.invent({
     }
   },
   onUpdate: function ({delta}) {
-    const velocityRatio = Math.min(1, Math.abs(this.velocity) / 20)
+    const velocityRatio = Math.min(1, Math.abs(this.velocity.x) / 20)
 
     this.updateCollisionSynth(delta)
     this.updateToneSynth(velocityRatio)
@@ -36,7 +36,7 @@ content.prop.opponent.base = engine.prop.base.invent({
       fmodType: 'sawtooth',
     }).filtered({
       frequency: frequency * 2,
-    }).connect(this.output.input)
+    }).connect(this.output)
   },
   destroyCollisionSynth: function () {
     this.collisionSynth.stop().disconnect()
@@ -44,22 +44,22 @@ content.prop.opponent.base = engine.prop.base.invent({
   },
   duck: function () {
     const now = engine.audio.time()
-    this.output.input.gain.setValueAtTime(1, now)
-    this.output.input.gain.exponentialRampToValueAtTime(engine.utility.fromDb(-24), now + 1/32)
-    this.output.input.gain.exponentialRampToValueAtTime(1, now + 3)
+    this.output.gain.setValueAtTime(1, now)
+    this.output.gain.exponentialRampToValueAtTime(engine.utility.fromDb(-24), now + 1/32)
+    this.output.gain.exponentialRampToValueAtTime(1, now + 3)
     return this
   },
   updateCollisionSynth: function (delta) {
-    const position = engine.position.get()
+    const position = engine.position.getVector()
 
     const yDistance = Math.abs(this.y - position.y)
     let collisionChance = engine.utility.clamp(engine.utility.scale(yDistance, this.radius, this.radius * 4, 1, 0), 0, 1)
 
-    const isIncoming = (this.velocity < 0 && this.x > 0)
-      || (this.velocity > 0 && this.x < 0)
+    const isIncoming = (this.velocity.x < 0 && this.x > 0)
+      || (this.velocity.x > 0 && this.x < 0)
 
     if (collisionChance && !isIncoming && this.collisionSynth) {
-      collisionChance = (1 - Math.min(1, Math.abs(this.x) / Math.abs(this.velocity))) * collisionChance
+      collisionChance = (1 - Math.min(1, Math.abs(this.x) / Math.abs(this.velocity.x))) * collisionChance
     } else if (collisionChance && !isIncoming) {
       collisionChance = 0
     }
@@ -76,7 +76,7 @@ content.prop.opponent.base = engine.prop.base.invent({
     }
 
     const reactionTime = 10
-    const reactionDistance = reactionTime * Math.abs(this.velocity)
+    const reactionDistance = reactionTime * Math.abs(this.velocity.x)
     const reactionCompensation = -engine.utility.toDb(engine.utility.distanceToPower(reactionDistance)) / 4
 
     const compensation = engine.utility.fromDb(
@@ -100,7 +100,7 @@ content.prop.opponent.base = engine.prop.base.invent({
       engine.audio.shape.noise4()
     ).filtered({
       frequency: frequency * 4,
-    }).connect(this.output.input)
+    }).connect(this.output)
 
     this.toneSynth.param.gain.value = engine.utility.fromDb(-3)
   },

@@ -13,7 +13,7 @@ content.system.player = (() => {
 
   function calculateAcceleration() {
     // Accelerates most when in center of road
-    const position = engine.position.get(),
+    const position = engine.position.getVector(),
       ratio = engine.utility.clamp(Math.abs(position.y) / content.const.roadRadius, 0, 1)
 
     return 1 - (ratio ** 4)

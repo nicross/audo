@@ -14,7 +14,7 @@ content.prop.powerup.base = engine.prop.base.invent({
       fmodDepth: depth,
       fmodType: 'sawtooth',
       fmodFrequency: 4,
-    }).connect(this.output.input)
+    }).connect(this.output)
 
     this.synth.param.gain.value = engine.utility.fromDb(-3)
   },

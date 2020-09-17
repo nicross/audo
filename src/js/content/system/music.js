@@ -80,7 +80,7 @@ content.system.music = (() => {
       return this
     },
     update: function (delta) {
-      const position = engine.position.get()
+      const position = engine.position.getVector()
 
       const gain = engine.utility.clamp(1 - (Math.abs(position.y) / content.const.roadRadius), 0.5, 1)
       const pan = engine.utility.clamp(position.y / content.const.roadRadius, -1, 1)

@@ -27,7 +27,7 @@ content.system.player.audio.road = (() => {
     update: function ({delta}) {
       const acceleration = content.system.player.acceleration(),
         accelerationExp = (1 - acceleration) ** 2,
-        position = engine.position.get(),
+        position = engine.position.getVector(),
         velocityRatio = content.system.player.velocityRatio()
 
       binaural.update({

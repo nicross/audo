@@ -23,7 +23,9 @@ content.system.powerups = (() => {
         y: 0,
       })
 
-      powerup.velocity = -content.system.player.relativeVelocity()
+      powerup.velocity.set({
+        x: -content.system.player.relativeVelocity(),
+      })
 
       return this
     },
@@ -32,7 +34,9 @@ content.system.powerups = (() => {
         powerup.applyEffect().setCooldown(true)
       }
 
-      powerup.velocity = -content.system.player.relativeVelocity()
+      powerup.velocity.set({
+        x: -content.system.player.relativeVelocity(),
+      })
 
       return this
     },

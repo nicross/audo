@@ -1,7 +1,7 @@
 content.system.player.movement = {
   update: function ({x}) {
-    const movement = engine.movement.get(),
-      position = engine.position.get()
+    const movement = content.system.movement.get(),
+      position = engine.position.getVector()
 
     const allowLeft = position.y < content.const.roadRadius,
       allowRight = position.y > -content.const.roadRadius
@@ -26,26 +26,25 @@ content.system.player.movement = {
     }
 
     if (isBoundary) {
-      engine.movement.reset()
-      engine.position.set({
+      content.system.movement.reset()
+      engine.position.setVector({
         x: 0,
         y: engine.utility.clamp(position.y, -content.const.roadRadius, content.const.roadRadius)
       })
     } else if (directionChanged) {
-      engine.movement.set({
+      content.system.movement.set({
         ...movement,
         velocity: movement.velocity * 2/3,
       })
     }
 
-    engine.const.movementAcceleration = Math.min(content.system.player.relativeVelocity(), engine.const.gravity)
+    content.const.movementAcceleration = Math.min(content.system.player.relativeVelocity(), engine.const.gravity)
 
-    engine.movement.update({
+    content.system.movement.update({
       translate: {
         radius: translateRadius,
         theta: translateTheta,
       },
-      rotate: 0,
     })
 
     return this

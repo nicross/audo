@@ -28,7 +28,10 @@ content.system.opponents = (() => {
         y: engine.utility.random.float(-content.const.roadRadius, content.const.roadRadius),
       })
 
-      opponent.velocity = -relativeVelocity
+      opponent.velocity.set({
+        x: -relativeVelocity,
+      })
+
       opponents.push(opponent)
     }
   }
@@ -42,7 +45,10 @@ content.system.opponents = (() => {
     })
 
     opponent.isFresh = true
-    opponent.velocity = content.system.player.relativeVelocity()
+
+    opponent.velocity.set({
+      x: content.system.player.relativeVelocity(),
+    })
 
     opponents.push(opponent)
   }
@@ -51,7 +57,7 @@ content.system.opponents = (() => {
     const hasShield = content.system.player.shield.has(),
       isInvincible = content.system.player.invincibility.has(),
       lapDistance = content.system.player.lapDistance() / 2,
-      position = engine.position.get(),
+      position = engine.position.getVector(),
       relativeVelocity = content.system.player.relativeVelocity()
 
     let shieldBroken = false
@@ -86,9 +92,9 @@ content.system.opponents = (() => {
         opponent.isShielded = false
       }
 
-      opponent.velocity = opponent.isFresh
-        ? relativeVelocity
-        : -relativeVelocity
+      opponent.velocity.set({
+        x: opponent.isFresh ? relativeVelocity : -relativeVelocity,
+      })
     }
 
     if (shieldBroken) {
