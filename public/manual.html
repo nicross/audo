@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Audo Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <style>
+      @font-face {
+        font-family: ComfortaaBold;
+        font-style: normal;
+        font-weight: 700;
+        src: url('font/comfortaa-bold.woff') format('woff');
+      }
+
+      @font-face {
+        font-family: OpenSansItalic;
+        font-style: italic;
+        font-weight: 400;
+        src: url('font/opensans-italic.woff') format('woff');
+      }
+
+      @font-face {
+        font-family: OpenSansRegular;
+        font-style: normal;
+        font-weight: 400;
+        src: url('font/opensans-regular.woff') format('woff');
+      }
+
+      *, *::after, *::before {
+        background: transparent;
+        border: 0;
+        box-sizing: border-box;
+        color: inherit;
+        font: inherit;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        font-family: OpenSansRegular, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      main ::selection {
+        background-color: #0484d1;
+        color: #FFFFFF;
+        text-decoration-color: #FFFFFF;
+      }
+
+      a {
+        color: #0484d1;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      details > * + * {
+        margin-top: 1.25em;
+      }
+
+      em {
+        font-family: OpenSansItalic;
+        font-style: italic;
+      }
+
+      h2 {
+        font-size: 2em;
+      }
+
+      h3 {
+        font-size: 1.5em;
+        margin-top: 3rem;
+      }
+
+      h4 {
+        font-size: 1.25em;
+        margin-top: 3rem;
+      }
+
+      strong, th {
+        font-family: ComfortaaBold;
+        font-weight: 700;
+      }
+
+      section {
+        margin: 0 auto;
+        max-width: calc(60ch + 4em);
+        padding: 3em 1em;
+      }
+
+      section + section {
+        border-top: 1px dotted #CCCCCC;
+      }
+
+      section > * + *:not(h3):not(h4) {
+        margin-top: 1.25em;
+      }
+
+      section > h2 + *,
+      section > h3 + *,
+      section > h4 + * {
+        margin-top: 0.75em !important;
+      }
+
+      table, td, th {
+        border: 1px solid #000000;
+        border-collapse: collapse;
+      }
+
+      td, th {
+        padding: 0.25em 0.5em;
+      }
+
+      th {
+        text-align: left;
+      }
+
+      ul {
+        list-style-position: inside;
+        padding-left: 1.5em;
+      }
+
+      .hero {
+        align-items: center;
+        background-color: #000000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 1.25;
+        padding: 4em 1em;
+      }
+        .hero--logo {
+          color: #FFFFFF;
+          font-family: ComfortaaBold, sans-serif;
+          font-size: 3em;
+          font-weight: 700;
+          letter-spacing: 0.125em;
+          line-height: 1;
+          text-align: center;
+          text-transform: uppercase;
+        }
+        .hero--title {
+          color: #FFFFFF;
+          margin-top: 2em;
+          text-align: center;
+          text-transform: uppercase;
+        }
+
+      .scrollable {
+        max-width: 100%;
+        overflow: auto;
+        white-space: nowrap;
+      }
+
+      @media (min-width: 20rem) {
+        :root {
+          font-size: calc(1rem + ((1vw - 0.2rem) * 0.25));
+        }
+      }
+
+      @media (min-width: 30rem) {
+        .hero--logo {
+          font-size: 4em;
+        }
+      }
+
+      @media (min-width: 48rem) {
+        section {
+          padding-left: 2em;
+          padding-right: 2em;
+        }
+
+        .hero--logo {
+          font-size: 6em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <h1>
+        <div class="hero--logo">Audo</div>
+        <div class="hero--title">Documentation</div>
+      </h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>The Year is 3223</h2>
+        <p>In the lethal futuresport known as Audo, there is no such thing as slowing down. Each racing pod is designed to gradually increase in speed as our contestants vie to be the fastest on the track. But beware, as things heat up it gets harder to avoid crashing into your competitors! Be sure to check your rear viewscreen as well, as someone even faster than you could blaze by in the blink of an eye&mdash;or smash right into you, obliterating any chance at victory.</p>
+      </section>
+
+      <section>
+        <h2>System Requirements</h2>
+        <p>Audo is an audio game best experienced with headphones.</p>
+        <p>Real-time synthesis is an <em>extremely</em> CPU-intensive process. Audo will attempt to run on any machine that meets its minimum requirements; however, players may experience stuttering or drop-outs when running below the recommended requirements.</p>
+
+        <h3>Minimum System Requirements</h3>
+        <table>
+          <tr>
+            <th>CPU</th>
+            <td>SSE2 capable (64-bit)</td>
+          </tr>
+          <tr>
+            <th>RAM</th>
+            <td>2 GB</td>
+          </tr>
+        </table>
+
+        <h3>Recommended System Requirements</h3>
+        <table>
+          <tr>
+            <th>CPU</th>
+            <td>3.5 GHz Quad-Core (64-bit)</td>
+          </tr>
+          <tr>
+            <th>RAM</th>
+            <td>4 GB</td>
+          </tr>
+        </table>
+
+        <h3>Browser Support</h3>
+        <p>The HTML5 build of Audo is intended to be played in a recent version of a Chromium-based browser, including Google Chrome, Microsoft Edge, and Opera. Browser extensions that alter page behavior are not recommended. Other browsers may suffice if they support modern JavaScript features and the current Web Audio API specification.</p>
+      </section>
+
+      <section>
+        <h2>How to Play</h2>
+        <p>Welcome to the lethal futuresport known as Audo.</p>
+        <p>Your racer accelerates fastest in the center lane and is destroyed when it collides with an opponent. After each lap an opponent enters the fray and a power-up is spawned in the center lane. Collecting the power-up grants a shield which absorbs your next collision. Subsequent power-ups while shielded grant a 50% speed boost.</p>
+        <p>Stay close to the center, collect speed boosts, and drift sideways to avoid opponents. Will you become the fastest in the galaxy?</p>
+      </section>
+
+      <section>
+        <h2>Controls</h2>
+        <p>Audo supports a variety of input devices. Although remapping of controls is currently not available, alternate control schemes have been provided where appropriate.</p>
+
+        <h3>Keyboard Controls</h3>
+        <div class="scrollable">
+          <table>
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Key 1</th>
+                <th>Key 2</th>
+                <th>Key 3</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Drift Left</th>
+                <td>A</td>
+                <td>Left Arrow</td>
+                <td>Numpad 4</td>
+              </tr>
+              <tr>
+                <th>Drift Right</th>
+                <td>D</td>
+                <td>Right Arrow</td>
+                <td>Numpad 6</td>
+              </tr>
+              <tr>
+                <th>UI Confirm</th>
+                <td>Enter</td>
+                <td>Space</td>
+                <td>Numpad Enter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Gamepad Controls</h3>
+        <p>Audo supports standard gamepads such as an Xbox One controller. Other controllers can be configured with a utility like <a href="https://github.com/x360ce/x360ce" rel="nofollow noopener" target="_blank">x360ce</a> or <a href="https://xpadder.com/" rel="nofollow noopener" target="_blank">Xpadder</a>:</p>
+
+        <div class="scrollable">
+          <table>
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Button 1</th>
+                <th>Button 2</th>
+                <th>Button 3</th>
+                <th>Button 4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Drift Left</th>
+                <td>Any Stick</td>
+                <td>D-Pad Left</td>
+                <td>Left Bumper</td>
+                <td>Left Trigger</td>
+              </tr>
+              <tr>
+                <th>Drift Right</th>
+                <td>Any Stick</td>
+                <td>D-Pad Right</td>
+                <td>Right Bumper</td>
+                <td>Right Trigger</td>
+              </tr>
+              <tr>
+                <th>UI Confirm</th>
+                <td>A</td>
+                <td>Start</td>
+                <td>Select</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <p>Audo is developed in accordance with WCAG (Web Content Accessibility Guidelines) 2.1 at Level AA conformance. Its menus are fully operable with a keyboard and screen readers such as NVDA.</p>
+      </section>
+
+      <section>
+        <h2>Support</h2>
+        <p>Please direct all support requests through the platform from which Audo was acquired:</p>
+
+        <ul>
+          <li><a href="https://shiftbacktick.itch.io/audo" rel="nofollow noopener" target="_blank">itch.io store page</a></li>
+          <li><a href="https://shiftbacktick.io" rel="nofollow noopener" target="_blank">Developer website</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Credits</h2>
+        <p>The typeface Comfortaa was created by Johan Aakerlund. The typeface Open Sans was created by Steve Matteson.</p>
+        <p>Special thanks to Paul Berberich for imagining the initial game concept, writing its flavor text, designing its logo, and playtesting. This game would not have been possible without him.</p>
+        <p>Thanks for playing!</p>
+      </section>
+    </main>
+  </body>
+</html>
