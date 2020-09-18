@@ -46,8 +46,12 @@ content.system.movement = (() => {
 
       state.deltaVelocity = delta * state.velocity
 
+      engine.position.setEuler({
+        yaw: (Math.PI / 4) * (state.velocity / content.const.movementMaxVelocity) * engine.utility.sign(translate.theta),
+      })
+
       engine.position.setVelocity({
-        x: state.velocity * Math.cos(state.angle),
+        x: 0,
         y: state.velocity * Math.sin(state.angle),
       })
 
