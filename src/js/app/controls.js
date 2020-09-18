@@ -17,6 +17,7 @@ app.controls = (() => {
         x: 0,
         ...this.gamepad.game(),
         ...this.keyboard.game(),
+        ...this.touch.game(),
       }
 
       return this
