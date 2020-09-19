@@ -1,5 +1,12 @@
 # Audo changelog
 
+## v1.2.0
+- Added touch controls
+- Added gamepad triggers as valid controls
+- Added slight panning while drifting
+- Added user documentation
+- Upgraded to latest version of syngen
+
 ## v1.1.0
 - **Improved difficulty scaling**
   - Added tutorial screen for players with scores below 500
