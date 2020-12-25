@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 
 const os = require('os'),
   package = require('../package.json'),
@@ -22,6 +22,7 @@ function createWindow() {
     icon: path.join(__dirname, '../public/favicon.png'),
     title: package.name,
     webPreferences: {
+      contextIsolation: true,
       devTools: false,
       preload: path.join(__dirname, 'preload.js'),
     }
@@ -60,3 +61,5 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+ipcMain.on('quit', () => app.quit())
