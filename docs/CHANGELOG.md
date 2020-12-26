@@ -1,5 +1,8 @@
 # Audo changelog
 
+## v1.2.1
+- Updated to Chrome 87
+
 ## v1.2.0
 - Added touch controls
 - Added gamepad triggers as valid controls
