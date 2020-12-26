@@ -3,7 +3,7 @@ app.crashFixer = (() => {
 
   const analyzer = context.createAnalyser()
   analyzer.fftSize = 32
-  engine.audio.mixer.master.output.connect(analyzer)
+  engine.audio.mixer.master.output().connect(analyzer)
 
   const analyzerTimeData = new Uint8Array(analyzer.frequencyBinCount)
 

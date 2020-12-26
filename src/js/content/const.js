@@ -2,7 +2,9 @@ engine.const.audioLookaheadTime = 1/120
 engine.const.distancePower = 2
 engine.const.distancePowerHorizon = true
 engine.const.distancePowerExponent = 1
-engine.const.propFadeDuration = 1/4
+
+engine.prop.base.fadeInDuration = 1/4
+engine.prop.base.fadeOutDuration = 1/4
 
 content.const = {
   lapTime: 30,

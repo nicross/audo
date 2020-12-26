@@ -9,5 +9,5 @@ engine.ready(() => {
   engine.audio.mixer.master.param.limiter.threshold.value = -30
 
   engine.audio.mixer.auxiliary.reverb.setImpulse(engine.audio.buffer.impulse.medium())
-  engine.audio.mixer.auxiliary.reverb.setGain(engine.utility.fromDb(-3))
+  engine.audio.mixer.auxiliary.reverb.param.gain.value = engine.utility.fromDb(-3)
 })
